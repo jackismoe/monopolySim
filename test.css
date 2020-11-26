@@ -1,0 +1,104 @@
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.boardContainer {
+  border: 5px solid black;
+  width: 1200px;
+  height: 883px;
+  position: relative;
+}
+
+.gameBoard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.dice {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+}
+
+.roll {
+  position: absolute;
+  height : 80px;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 60%;
+  left: 47%
+}
+
+.number {
+  border: 2px solid black;
+  height: 100%;
+  width: 100%;
+  margin: 5px;
+}
+
+.venture, .sharks {
+  border: 2px solid black;
+  transform: rotate(-45deg);
+  text-align: center;
+}
+
+.venture {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  top: 21%;
+  left: 11%;
+}
+
+.sharks {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  top: 67%;
+  left: 72%;
+}
+
+.square {
+  border: 2px solid black;
+  text-align: center;
+}
+
+.eleven {
+  /* 11x1 full stretch */
+  display: grid;
+  grid-template-columns: 120px 106.66px 106.66px 106.66px 106.66px 106.66px 106.66px 106.66px 106.66px 106.66px 120px;
+  grid-template-rows: 120px;
+  border: 1px solid black;
+}
+
+.middleNine {
+  /* eight 9x2 with grid column gap @ 960px */
+  display: grid;
+  grid-template-columns: 120px 120px;
+  grid-template-rows: 71.44px 71.44px 71.44px 71.44px 71.44px 71.44px 71.44px 71.44px 71.44px;
+  grid-column-gap: 960px;
+}
+
+.playerInfoContainer {
+  width: 75%;
+  height: 10%;
+  display: flex;
+  margin-top: 75px;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.player {
+  width: 25%;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 25px;
+  margin: 5px;
+  text-align: center;
+}
