@@ -491,7 +491,7 @@ class GameSquare {
     if ((this.name == 'incomeTax') || (this.name == 'electricCompany') || (this.name == 'goToJail') || (this.name == 'sharkTank') || (this.name == 'ventureFund') || (this.name == 'luxuryTax') || (this.name == 'freeParking') || (this.name == 'inJail') || (this.name == 'boRailroad')|| (this.name == 'readingRailroad')||(this.name == 'shortLineRailroad') || (this.name == 'pennRailroad') || (this.name == 'Go') || (this.name == 'waterWorks')) {
       currentSquare.innerHTML = ``
     } else if (this.price !== undefined) {
-      currentSquare.innerHTML = `<span>${this.name}<p>$${this.price}</p><span>`
+      currentSquare.innerHTML = `<span>${this.name}<span>`
       currentSquare.addEventListener('click', () => {
         this.showSquare()
       })
