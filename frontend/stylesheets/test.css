@@ -5,7 +5,7 @@ body {
 }
 
 .game {
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 .setup > h2 {
@@ -22,6 +22,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  visibility: hidden;
 }
 
 select {
@@ -41,7 +42,6 @@ select {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1;
   background-color: rgb(194,226,196);
 }
 
@@ -100,6 +100,19 @@ select {
   text-align: center;
 }
 
+.square:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px;
+}
+
+a.close {
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  left: 91%;
+  top: 6%
+}
+
 #mediterraneanAve, #balticAve {
   background-color: rgb(129,66,41);
   color: white
@@ -129,67 +142,67 @@ select {
   color: white
 }
 #go {
-  background-image: url('./images/newgo.png');
+  background-image: url('../images/square/newgo.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 #ventureFund {
-  background-image: url('./images/communitychest.png');
+  background-image: url('../images/square/communitychest.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 #boRailroad, #readingRailroad, #pennRailroad, #shortLineRailroad {
-  background-image: url('./images/train.png');
+  background-image: url('../images/square/train.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 #inJail {
-  background-image: url('./images/injail.png');
+  background-image: url('../images/square/injail.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 #electricCompany {
-  background-image: url('./images/electric.png');
+  background-image: url('../images/square/electric.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 #luxuryTax {
-  background-image: url('./images/luxury.png');
+  background-image: url('../images/square/luxury.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 #freeParking {
-  background-image: url('./images/freeparking.png');
+  background-image: url('../images/square/freeparking.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 #sharkTank {
-  background-image: url('./images/chance.png');
+  background-image: url('../images/square/chance.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 #incomeTax {
-  background-image: url('./images/incometax.png');
+  background-image: url('../images/square/incometax.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 #waterWorks {
-  background-image: url('./images/waterworks.png');
+  background-image: url('../images/square/waterworks.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 #goToJail {
-  background-image: url('./images/gotojail.png');
+  background-image: url('../images/square/gotojail.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -232,5 +245,23 @@ select {
   border-radius: 25px;
   margin: 5px;
   text-align: center;
+}
+
+.showCard {
+  border: 2px solid black;
+  background-color: white;
+  width: 315px;
+  height: 370px;
+  position: absolute;
+  top: 42%;
+  left: 12%;
+  font-size: 13px;
+  text-align: center;
+}
+
+.showCard > h2 {
+  color: white;
+  background-color: black;
+  height: 50px;
 }
 

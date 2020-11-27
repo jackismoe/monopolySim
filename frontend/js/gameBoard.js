@@ -4,7 +4,6 @@ class GameBoard {
   }
 
   static rollDice() {
-    console.log('yes')
     let firstDie = document.getElementById('firstDie')
     let secondDie = document.getElementById('secondDie')
 
@@ -14,10 +13,12 @@ class GameBoard {
     firstDie.innerText = firstNumber
     secondDie.innerText = secondNumber
   }
+
+  //cc
+  //sharks
+  //add house
+  //add hotel
 }
 
 const dice = document.getElementById('dice')
 dice.addEventListener('click', GameBoard.rollDice)
-
-// community chest
-// chance
