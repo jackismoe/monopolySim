@@ -5,7 +5,7 @@ body {
 }
 
 .game {
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 .setup > h2 {
@@ -21,14 +21,39 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  visibility: hidden;
+}
+form > div {
+  position: relative;
+  padding: 20px;
+}
+form > button {
+  position: absolute;
+  top: 75%;
+  height: 50;
+  width: 200;
+  border-radius: 10%;
+}
+
+.playerSelect {
+  position: relative;
+}
+.cashSelect {
+  position: relative;
+  top: -50
+}
+
+
+.welcome {
+  position: absolute;
+  font-size: 76px;
+  top: -43px;
 }
 
 select {
   padding: 10px;
   border-radius: 10%;
-  margin: 10px
+  margin: 10px;
+  width: 140px
 }
 
 .boardContainer {
