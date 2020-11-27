@@ -43,8 +43,25 @@ class Player {
   }
 
   static buildPlayerCards() {
+    let playerContainer = document.createElement('div')
+    playerContainer.className = 'playerInfoContainer'
+    playerContainer.id = 'playerInfoContainer'
     for (let x of Player.currentPlayers) {
-      console.log(x)
+      let player = document.createElement('div')
+      player.className = 'player'
+
+      if (x.propertiesOwned.length == undefined) {
+        player.innerHTML = `
+        <h3>${x.name}</h3>
+        <p>$${x.cash}</p>`
+      } else {
+        player.innerHTML = `
+        <h3>${x.name}</h3>
+        <p>$${x.cash}</p>
+        <p>${x.propertiesOwned.length}</p>`
+      }
+      playerContainer.appendChild(player)
     }
+    game.appendChild(playerContainer)
   }
 }

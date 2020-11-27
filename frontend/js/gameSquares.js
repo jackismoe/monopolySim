@@ -24,7 +24,7 @@ class GameSquare {
       },
       {
         id: 23,
-        name: 'sharkTank'
+        name: 'sharkTank2'
       },
       {
         id: 24,
@@ -197,11 +197,11 @@ class GameSquare {
       },
       {
         id: 18,
-        name: 'ventureFund'
+        name: 'ventureFund2'
       },
       {
         id: 34,
-        name: 'ventureFund',
+        name: 'ventureFund3',
       },
       {
         id: 17,
@@ -271,7 +271,7 @@ class GameSquare {
       },
       {
         id: 37,
-        name: 'sharkTank'
+        name: 'sharkTank3'
       },
       {
         id: 14,
@@ -391,7 +391,7 @@ class GameSquare {
       },
       {
         id: 8,
-        name: 'sharkTank'
+        name: 'sharkTank1'
       },
       {
         id: 7,
@@ -441,7 +441,7 @@ class GameSquare {
       },
       {
         id: 3,
-        name: 'ventureFund'
+        name: 'ventureFund1'
       },
       {
         id: 2,
@@ -504,8 +504,25 @@ class GameSquare {
         currentSquare.style.cursor = 'default'
       })
     }
+    let spaceContainer = document.createElement('div')
+    let playerOneSpace = document.createElement('div')
+    let playerTwoSpace = document.createElement('div')    
+    let playerThreeSpace = document.createElement('div')    
+    let playerFourSpace = document.createElement('div')
 
+    playerOneSpace.className = '1'
+    playerTwoSpace.className = '2'
+    playerThreeSpace.className = '3'
+    playerFourSpace.className = '4'
+
+    spaceContainer.appendChild(playerOneSpace)
+    spaceContainer.appendChild(playerTwoSpace)
+    spaceContainer.appendChild(playerThreeSpace)
+    spaceContainer.appendChild(playerFourSpace)
+    spaceContainer.id = 'spaces'
     currentSquare.id = this.name
+    currentSquare.className = 'space'
+    currentSquare.appendChild(spaceContainer)
     desiredDiv.appendChild(currentSquare)
   }
 
