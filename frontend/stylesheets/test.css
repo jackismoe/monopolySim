@@ -2,6 +2,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: black;
 }
 
 .game {
@@ -291,6 +292,7 @@ a.close {
   border-radius: 25px;
   margin: 5px;
   text-align: center;
+  background-color: white;
 }
 
 .showCard {
@@ -339,3 +341,34 @@ a.close {
   top: 85px;
   left: 71px;
 }  
+#dog {
+  position: absolute;
+  height: auto;
+  width: 300px;
+  z-index: -1;
+  top: 852px
+}
+#diamond {
+  position: absolute;
+  height: auto;
+  width: 300px;
+  left: 475px;
+  z-index: -1;
+  top: 865px
+}
+#man {
+  position: absolute;
+  height: auto;
+  width: 300px;
+  z-index: -1;
+  left: 766px;
+  top: 717px;
+}
+#boat {
+  position: absolute;
+  height: auto;
+  width: 300px;
+  z-index: -1;
+  left: 1075px;
+  top: 879px;
+}
