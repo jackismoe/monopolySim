@@ -1,14 +1,15 @@
+let playerIcon1 = document.createElement('div')
+let playerIcon2 = document.createElement('div')
+let playerIcon3 = document.createElement('div')
+let playerIcon4 = document.createElement('div')
 class Player {
   static currentPlayers = []
-  constructor(name, cash) {
+  constructor(id, name, cash) {
+    this.id = id
     this.name = name
     this.cash = cash
     this.propertiesOwned = {}
     this.position = 1
-
-    if (this.position > 40) {
-      this.position = 1
-    }
     Player.currentPlayers.push(this)
   }
 
@@ -34,10 +35,10 @@ class Player {
     playerThree == '' ?  three = 'ruby' : three = playerThree
     playerFour == '' ? four = 'smudge' : four = playerFour
 
-    new Player(one, cash)
-    new Player(two, cash)
-    new Player(three, cash)
-    new Player(four, cash)
+    new Player(1, one, cash)
+    new Player(2, two, cash)
+    new Player(3, three, cash)
+    new Player(4, four, cash)
 
     Player.buildPlayerCards()
   }
@@ -61,7 +62,32 @@ class Player {
         <p>${x.propertiesOwned.length}</p>`
       }
       playerContainer.appendChild(player)
+      let iconImg = document.createElement('img')
+      let go = document.getElementsByName('1')[0]
+      iconImg.id = `playerIcon${x.id}`
+      iconImg.src = `./images/pieces/p${x.id}.png`
+      go.appendChild(iconImg)
     }
     game.appendChild(playerContainer)
+  }
+
+
+  move(spaces) {
+    let myIcon = document.querySelector(`img#playerIcon${this.id}`)
+    let timesToMove = Array(spaces)
+    for (let x of timesToMove) {
+      this.position++
+      if (this.position > 40) {
+        this.position = 1
+      }
+      let square = document.getElementsByName(this.position)[0]    
+      if ((this.position > 11 && this.position <= 20) || (this.position > 31 && this.position <= 40)) {
+        myIcon.style.top = '35px'
+      } else {
+        myIcon.style.top = '85px'
+      }
+      myIcon.remove()
+      square.appendChild(myIcon)
+    }
   }
 }

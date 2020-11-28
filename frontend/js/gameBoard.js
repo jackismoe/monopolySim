@@ -1,7 +1,5 @@
 class GameBoard {
-  constructor() {
-
-  }
+  static currentPlayer = 1
 
   static rollDice() {
     let firstDie = document.getElementById('firstDie')
@@ -12,8 +10,17 @@ class GameBoard {
 
     firstDie.innerText = firstNumber
     secondDie.innerText = secondNumber
-  }
 
+    let total = firstNumber + secondNumber
+
+    let player 
+    for (let i = 0; i < Player.currentPlayers.length; i++) {
+      if (GameBoard.currentPlayer == Player.currentPlayers[i].id) {
+        player = Player.currentPlayers[i]
+      }
+    }
+    player.move(total)
+  }
   //cc
   //sharks
   //add house

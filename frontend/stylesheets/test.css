@@ -30,16 +30,6 @@ body {
   top: 79%
 }
 
-#spaces {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 20px;
-  width: 98%;
-}
-#spaces > div {
-  border: 2px dotted gray;
-}
-
 .setup > h2 {
   padding: 50px;
 }
@@ -321,3 +311,31 @@ a.close {
   height: 50px;
 }
 
+#playerIcon1 {
+  position: absolute;
+  height: 30px;
+  width: auto;
+  top: 85px;
+  left: 5px;
+}  
+#playerIcon2 {
+  position: absolute;
+  height: 30px;
+  width: auto;
+  top: 85px;
+  left: 28px;
+}  
+#playerIcon3 {
+  position: absolute;
+  height: 30px;
+  width: auto;
+  top: 85px;
+  left: 50px;
+}  
+#playerIcon4 {
+  position: absolute;
+  height: 30px;
+  width: auto;
+  top: 85px;
+  left: 71px;
+}  

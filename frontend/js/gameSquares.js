@@ -468,6 +468,7 @@ class GameSquare {
   static gameSquares = []
   constructor(id, name, buyable, price, owned, buildable, builtOn, funds, pricePerHouse, rent, oneHouse, twoHouse, threeHouse, fourHouse, hotel) {
     this.id = id
+    this.eleName = id
     this.name = name
     this.buyable = buyable
     this.price = price
@@ -484,10 +485,10 @@ class GameSquare {
     this.hotel = hotel
     GameSquare.gameSquares.push(this)
   }
-
+  
   createSquare(desiredDiv) {
     let currentSquare = document.createElement('div')
-
+    
     if ((this.name == 'incomeTax') || (this.name == 'electricCompany') || (this.name == 'goToJail') || (this.name == 'sharkTank') || (this.name == 'ventureFund') || (this.name == 'luxuryTax') || (this.name == 'freeParking') || (this.name == 'inJail') || (this.name == 'boRailroad')|| (this.name == 'readingRailroad')||(this.name == 'shortLineRailroad') || (this.name == 'pennRailroad') || (this.name == 'Go') || (this.name == 'waterWorks')) {
       currentSquare.innerHTML = ``
     } else if (this.price !== undefined) {
@@ -495,34 +496,46 @@ class GameSquare {
       currentSquare.addEventListener('click', () => {
         this.showSquare()
       })
-      currentSquare.addEventListener('mouseenter', () => {
-        currentSquare.style.border = '2px solid white'
-        currentSquare.style.cursor = 'pointer'
-      })
-      currentSquare.addEventListener('mouseleave', () => {
-        currentSquare.style.border = '2px solid black'
-        currentSquare.style.cursor = 'default'
-      })
+      if ((this.name == 'newYorkAve') || (this.name == 'tennesseeAve') || (this.name == 'stJamesPlace') || (this.name == 'virginiaAve') || (this.name == 'statesAve') || (this.name == 'stCharlesPlace')) {
+        currentSquare.addEventListener('mouseenter', () => {
+          currentSquare.style.left = '+15px'
+          currentSquare.style.cursor = 'pointer'
+        })      
+        currentSquare.addEventListener('mouseleave', () => {
+          currentSquare.style.left = '0px'
+          currentSquare.style.cursor = 'default'
+        })
+      } else if ((this.name == 'pacificAve') || (this.name == 'northCarolinaAve') || (this.name == 'pennAve') || (this.name == 'parkPlace') || (this.name == 'boardWalk')) {
+        currentSquare.addEventListener('mouseenter', () => {
+          currentSquare.style.left = '-15px'
+          currentSquare.style.cursor = 'pointer'
+        })      
+        currentSquare.addEventListener('mouseleave', () => {
+          currentSquare.style.left = '0px'
+          currentSquare.style.cursor = 'default'
+        })
+      } else if ((this.name == 'kentuckyAve') || (this.name == 'indianaAve') || (this.name == 'illinoisAve') || (this.name == 'atlanticAve') || (this.name == 'ventnorAve') || (this.name == 'marvinGardens')){
+        currentSquare.addEventListener('mouseenter', () => {
+          currentSquare.style.bottom = '-10px'
+          currentSquare.style.cursor = 'pointer'
+        })
+        currentSquare.addEventListener('mouseleave', () => {
+          currentSquare.style.bottom = '0px'
+          currentSquare.style.cursor = 'default'
+        })
+      } else {
+        currentSquare.addEventListener('mouseenter', () => {
+          currentSquare.style.top = '-10px'
+          currentSquare.style.cursor = 'pointer'
+        })
+        currentSquare.addEventListener('mouseleave', () => {
+          currentSquare.style.top = '0px'
+          currentSquare.style.cursor = 'default'
+        })      }
     }
-    let spaceContainer = document.createElement('div')
-    let playerOneSpace = document.createElement('div')
-    let playerTwoSpace = document.createElement('div')    
-    let playerThreeSpace = document.createElement('div')    
-    let playerFourSpace = document.createElement('div')
-
-    playerOneSpace.className = '1'
-    playerTwoSpace.className = '2'
-    playerThreeSpace.className = '3'
-    playerFourSpace.className = '4'
-
-    spaceContainer.appendChild(playerOneSpace)
-    spaceContainer.appendChild(playerTwoSpace)
-    spaceContainer.appendChild(playerThreeSpace)
-    spaceContainer.appendChild(playerFourSpace)
-    spaceContainer.id = 'spaces'
     currentSquare.id = this.name
+    currentSquare.setAttribute('name', this.eleName)
     currentSquare.className = 'space'
-    currentSquare.appendChild(spaceContainer)
     desiredDiv.appendChild(currentSquare)
   }
 

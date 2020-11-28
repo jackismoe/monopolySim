@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     GameSquare.gameSquares[i].createSquare(div)
   }
-
+  new GameBoard
   getSetUpValues()
 })
 
