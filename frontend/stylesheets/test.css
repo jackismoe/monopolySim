@@ -95,7 +95,7 @@ select {
 .dice {
   position: absolute;
   top: 75%;
-  left: 50%;
+  left: 48%;
 }
 
 .roll {
@@ -106,7 +106,7 @@ select {
   justify-content: center;
   align-items: center;
   top: 60%;
-  left: 47%
+  left: 45%
 }
 
 .number {
@@ -371,4 +371,28 @@ a.close {
   z-index: -1;
   left: 1075px;
   top: 879px;
+}
+.drawnCard {
+    border: 2px solid black;
+  background-color: white;
+  width: 315px;
+  height: 370px;
+  position: absolute;
+  top: 42%;
+  left: 62%;
+  font-size: 13px;
+  text-align: center;
+}
+
+.drawnCard > h2 {
+  position: relative;
+  top: 100px;
+  padding-left: 20px;
+  padding-right: 20px
+}
+.keyIcon {
+  position: relative;
+  height: 30px;
+  left: -67px;
+  top: -10px;
 }

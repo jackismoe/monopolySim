@@ -6,9 +6,11 @@ const game = document.querySelector('.game')
 const gameBoard = document.querySelector('.gameBoard')
 const setup = document.querySelector('.setup')
 const showCard = document.createElement('div')
+const drawnCard = document.createElement('div')
 const body = document.querySelector('body')
 
 showCard.className = 'showCard'
+drawnCard.className = 'drawnCard'
 
 
 

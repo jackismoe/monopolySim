@@ -2,6 +2,11 @@ let playerIcon1 = document.createElement('div')
 let playerIcon2 = document.createElement('div')
 let playerIcon3 = document.createElement('div')
 let playerIcon4 = document.createElement('div')
+let playerContainer = document.createElement('div')
+let keyIcon = document.createElement('img')
+keyIcon.className = 'keyIcon'
+keyIcon.src = `./images/pieces/key.png`
+
 class Player {
   static currentPlayers = []
   constructor(id, name, cash) {
@@ -10,6 +15,8 @@ class Player {
     this.cash = cash
     this.propertiesOwned = {}
     this.position = 1
+    this.inJail = false
+    this.hasJailCard = false
     Player.currentPlayers.push(this)
   }
 
@@ -44,12 +51,15 @@ class Player {
   }
 
   static buildPlayerCards() {
-    let playerContainer = document.createElement('div')
     playerContainer.className = 'playerInfoContainer'
     playerContainer.id = 'playerInfoContainer'
+    
+    let number = 1
     for (let x of Player.currentPlayers) {
       let player = document.createElement('div')
       player.className = 'player'
+      player.id = `player${number}`
+      number+=1
 
       if (x.propertiesOwned.length == undefined) {
         player.innerHTML = `
@@ -89,5 +99,44 @@ class Player {
       myIcon.remove()
       square.appendChild(myIcon)
     }
+    if (this.position == 3 || this.position == 18 || this.position == 34) {
+      this.drawVenture()
+    } else if (this.position == 8 || this.position == 23 || this.position == 37) {
+      this.drawShark()
+    }
+  }
+
+  drawVenture() {
+    let number = Math.floor((Math.random() * 16) + 1)
+    let card = GameBoard.ventureFund[number-1]
+    drawnCard.innerHTML = `<h1>ventureFund</h1><h2>${card.desc}</h2>`
+    gameBoard.appendChild(drawnCard)
+
+    let currentContainer = document.querySelector(`#player${this.id}`)
+    if (number == 5) {
+      let keyIcon = document.createElement('img')
+      keyIcon.className = 'keyIcon'
+      keyIcon.src = `./images/pieces/key.png`
+      currentContainer.appendChild(keyIcon)
+    }
+  }
+
+  drawShark() {
+    let number = Math.floor((Math.random() * 16) + 1)
+    let card = GameBoard.sharkTank[number-1]
+    drawnCard.innerHTML = `<h1>sharkTank</h1><h2>${card.desc}</h2>`
+    gameBoard.appendChild(drawnCard)
+
+    let currentContainer = document.querySelector(`#player${this.id}`)
+    if (number == 7) {
+      if (document.querySelector('.keyIcon')) {
+        document.querySelector('.keyIcon').remove()
+      }
+      let keyIcon = document.createElement('img')
+      keyIcon.className = 'keyIcon'
+      keyIcon.src = `./images/pieces/key.png`
+      currentContainer.appendChild(keyIcon)
+    }
   }
 }
+
