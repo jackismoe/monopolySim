@@ -106,8 +106,8 @@ class GameSquare {
         buyable: true,
         price: 150,
         owned: false,
-        buildable: false
-        // If a player owns either, rent is equal to the amount shown on the dice times 4. If a player owns both, rent is equal to the amount shown on the dice times 10. Each utility has a mortgage value of 75.
+        buildable: false,
+        rent: 'If a player owns either, rent is equal to the amount shown on the dice times 4. If a player owns both, rent is equal to the amount shown on the dice times 10.'
       },
       {
         id: 30,
@@ -312,12 +312,13 @@ class GameSquare {
         price: 150,
         owned: false,
         buildable: false,
-        // If a player owns either, rent is equal to the amount shown on the dice times 4. If a player owns both, rent is equal to the amount shown on the dice times 10. Each utility has a mortgage value of 75.
+        rent: 'If a player owns either, rent is equal to the amount shown on the dice times 4. If a player owns both, rent is equal to the amount shown on the dice times 10.'
       },
       {
         id: 39,
         name: 'luxuryTax',
-        price: -200
+        price: -200,
+        desc: 'Pay $75.'
       },
       {
         id: 12,
@@ -421,7 +422,8 @@ class GameSquare {
       {
         id: 5,
         name: 'incomeTax',
-        price: -200
+        price: -200,
+        desc: 'Pay 10% or $200, whichever is higher.'
       },
       {
         id: 4,
@@ -466,7 +468,7 @@ class GameSquare {
     ]
   ]
   static gameSquares = []
-  constructor(id, name, buyable, price, owned, buildable, builtOn, funds, pricePerHouse, rent, oneHouse, twoHouse, threeHouse, fourHouse, hotel) {
+  constructor(id, name, buyable, price, owned, buildable, builtOn, funds, pricePerHouse, rent, oneHouse, twoHouse, threeHouse, fourHouse, hotel, desc) {
     this.id = id
     this.eleName = id
     this.name = name
@@ -483,75 +485,95 @@ class GameSquare {
     this.threeHouse = threeHouse
     this.fourHouse = fourHouse
     this.hotel = hotel
+    this.desc = desc
     GameSquare.gameSquares.push(this)
   }
   
   createSquare(desiredDiv) {
     let currentSquare = document.createElement('div')
-    
-    if ((this.name == 'incomeTax') || (this.name == 'electricCompany') || (this.name == 'goToJail') || (this.name == 'sharkTank') || (this.name == 'ventureFund') || (this.name == 'luxuryTax') || (this.name == 'freeParking') || (this.name == 'inJail') || (this.name == 'boRailroad')|| (this.name == 'readingRailroad')||(this.name == 'shortLineRailroad') || (this.name == 'pennRailroad') || (this.name == 'Go') || (this.name == 'waterWorks')) {
-      currentSquare.innerHTML = ``
-    } else if (this.price !== undefined) {
+    currentSquare.id = this.name
+    currentSquare.setAttribute('name', this.eleName)
+    currentSquare.className = 'space'
+
+    if ((this.price !== undefined) && (this.name !== 'electricCompany') && (this.name !== 'waterWorks') && (this.name !== 'incomeTax') && (this.name !== "luxuryTax") && (!this.name.includes('Railroad'))) {
       currentSquare.innerHTML = `<span>${this.name}<span>`
       currentSquare.addEventListener('click', () => {
         this.showSquare()
       })
-      if ((this.name == 'newYorkAve') || (this.name == 'tennesseeAve') || (this.name == 'stJamesPlace') || (this.name == 'virginiaAve') || (this.name == 'statesAve') || (this.name == 'stCharlesPlace')) {
-        currentSquare.addEventListener('mouseenter', () => {
-          currentSquare.style.left = '+15px'
-          currentSquare.style.cursor = 'pointer'
-        })      
-        currentSquare.addEventListener('mouseleave', () => {
-          currentSquare.style.left = '0px'
-          currentSquare.style.cursor = 'default'
-        })
-      } else if ((this.name == 'pacificAve') || (this.name == 'northCarolinaAve') || (this.name == 'pennAve') || (this.name == 'parkPlace') || (this.name == 'boardWalk')) {
-        currentSquare.addEventListener('mouseenter', () => {
-          currentSquare.style.left = '-15px'
-          currentSquare.style.cursor = 'pointer'
-        })      
-        currentSquare.addEventListener('mouseleave', () => {
-          currentSquare.style.left = '0px'
-          currentSquare.style.cursor = 'default'
-        })
-      } else if ((this.name == 'kentuckyAve') || (this.name == 'indianaAve') || (this.name == 'illinoisAve') || (this.name == 'atlanticAve') || (this.name == 'ventnorAve') || (this.name == 'marvinGardens')){
-        currentSquare.addEventListener('mouseenter', () => {
-          currentSquare.style.bottom = '-10px'
-          currentSquare.style.cursor = 'pointer'
-        })
-        currentSquare.addEventListener('mouseleave', () => {
-          currentSquare.style.bottom = '0px'
-          currentSquare.style.cursor = 'default'
-        })
-      } else {
-        currentSquare.addEventListener('mouseenter', () => {
-          currentSquare.style.top = '-10px'
-          currentSquare.style.cursor = 'pointer'
-        })
-        currentSquare.addEventListener('mouseleave', () => {
-          currentSquare.style.top = '0px'
-          currentSquare.style.cursor = 'default'
-        })      }
+    } else if ((this.name == 'electricCompany') || (this.name == 'waterWorks') || (this.name == 'incomeTax') || (this.name == "luxuryTax") || (this.name.includes('Railroad'))) {
+      currentSquare.addEventListener('click', () => {
+        this.showSquare()
+      })
     }
-    currentSquare.id = this.name
-    currentSquare.setAttribute('name', this.eleName)
-    currentSquare.className = 'space'
+    
+
+    if ((this.name == 'newYorkAve') || (this.name == 'tennesseeAve') || (this.name == 'stJamesPlace') || (this.name == 'virginiaAve') || (this.name == 'statesAve') || (this.name == 'stCharlesPlace') || (this.name == 'pennRailroad') || (this.name == 'electricCompany')) {
+      currentSquare.addEventListener('mouseenter', () => {
+        currentSquare.style.left = '+15px'
+        currentSquare.style.cursor = 'pointer'
+      })      
+      currentSquare.addEventListener('mouseleave', () => {
+        currentSquare.style.left = '0px'
+        currentSquare.style.cursor = 'default'
+      })
+    } else if ((this.name == 'pacificAve') || (this.name == 'northCarolinaAve') || (this.name == 'pennAve') || (this.name == 'parkPlace') || (this.name == 'boardWalk') || (this.name == 'shortLineRailroad') || (this.name == 'luxuryTax')) {
+      currentSquare.addEventListener('mouseenter', () => {
+        currentSquare.style.left = '-15px'
+        currentSquare.style.cursor = 'pointer'
+      })      
+      currentSquare.addEventListener('mouseleave', () => {
+        currentSquare.style.left = '0px'
+        currentSquare.style.cursor = 'default'
+      })
+    } else if ((this.name == 'kentuckyAve') || (this.name == 'indianaAve') || (this.name == 'illinoisAve') || (this.name == 'atlanticAve') || (this.name == 'ventnorAve') || (this.name == 'marvinGardens') || (this.name == 'boRailroad') || (this.name == 'waterWorks')) {
+      currentSquare.addEventListener('mouseenter', () => {
+        currentSquare.style.bottom = '-10px'
+        currentSquare.style.cursor = 'pointer'
+      })
+      currentSquare.addEventListener('mouseleave', () => {
+        currentSquare.style.bottom = '0px'
+        currentSquare.style.cursor = 'default'
+      })
+    } else if ((this.name == 'mediterraneanAve') || (this.name == 'balticAve') || (this.name == 'incomeTax') || (this.name == 'readingRailroad') || (this.name == 'orientalAve') || (this.name == 'vermontAve') || (this.name == 'connecticutAve')) {
+      currentSquare.addEventListener('mouseenter', () => {
+        currentSquare.style.top = '-10px'
+        currentSquare.style.cursor = 'pointer'
+      })
+      currentSquare.addEventListener('mouseleave', () => {
+        currentSquare.style.top = '0px'
+        currentSquare.style.cursor = 'default'
+      })      
+    }
     desiredDiv.appendChild(currentSquare)
   }
 
   showSquare() {
-    showCard.innerHTML = `
-      <h2>${this.name} <a class='close' href="javascript:void(0)">ⓧ<a></h2>
-      <h4>Price: $${this.price}</h4>
-      <h4>Owned: ${this.owned}</h4>
-      <h4>Price perHouse: $${this.pricePerHouse}</h4>
-      <h4>Rent: $${this.rent}</h4>
-      <h4>Rent with oneHouse: $${this.oneHouse}</h4>
-      <h4>Rent with twoHouse: $${this.twoHouse}</h4>
-      <h4>Rent with threeHouse: $${this.threeHouse}</h4>
-      <h4>Rent with fourHouse: $${this.fourHouse}</h4>
-      <h4>Rent with hotel: $${this.hotel}</h4>
-    `
+    console.log(this)
+
+    if ((this.buildable !== false && undefined)) {
+      showCard.innerHTML = `
+        <h2>${this.name} <a class='close' href="javascript:void(0)">ⓧ<a></h2>
+        <h4>Price: $${this.price}</h4>
+        <h4>Owned: ${this.owned}</h4>
+        <h4>Price perHouse: $${this.pricePerHouse}</h4>
+        <h4>Rent: $${this.rent}</h4>
+        <h4>Rent with oneHouse: $${this.oneHouse}</h4>
+        <h4>Rent with twoHouse: $${this.twoHouse}</h4>
+        <h4>Rent with threeHouse: $${this.threeHouse}</h4>
+        <h4>Rent with fourHouse: $${this.fourHouse}</h4>
+        <h4>Rent with hotel: $${this.hotel}</h4>
+      `
+    } else if ((this.id == 5) || (this.id == 39)) {
+      showCard.innerHTML = `
+                            <h2>${this.name}</h2>
+                            <h4>${this.desc}</h4>`
+    } else {
+      showCard.innerHTML = `
+        <h2>${this.name} <a class='close' href="javascript:void(0)">ⓧ<a></h2>
+        <h4>Price: $${this.price}</h4>
+        <h4>Owned: ${this.owned}</h4>
+        <h4>Rent: $${this.rent}</h4>`
+    }
     gameBoard.appendChild(showCard)
 
   const closeShowCard = document.querySelector('.close')

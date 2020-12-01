@@ -56,7 +56,9 @@ form > button {
   width: 200;
   border-radius: 10%;
 }
-
+#player1 {
+  background-color: rgb(194,226,196);
+}
 .playerSelect {
   position: relative;
 }
@@ -267,6 +269,7 @@ a.close {
   border: 2px solid black;
   text-align: center;
   font-size: 11;
+  background-color: rgb(194,226,196);
 }
 
 .middleNine {
@@ -283,6 +286,8 @@ a.close {
   margin-top: 75px;
   justify-content: center;
   align-items: baseline;
+  position: relative;
+  top: -109px
 }
 
 .player {
@@ -342,35 +347,32 @@ a.close {
   left: 71px;
 }  
 #dog {
-  position: absolute;
-  height: auto;
-  width: 300px;
+  position: relative;
+  height: 120px;
+  width: auto;
   z-index: -1;
-  top: 852px
 }
 #diamond {
-  position: absolute;
-  height: auto;
-  width: 300px;
-  left: 475px;
+  position: relative;
+  height: 120px;
+  width: auto;
   z-index: -1;
-  top: 865px
 }
 #man {
-  position: absolute;
-  height: auto;
-  width: 300px;
+  position: relative;
+  height: 120px;
+  width: auto;
   z-index: -1;
-  left: 766px;
-  top: 717px;
 }
 #boat {
-  position: absolute;
-  height: auto;
-  width: 300px;
+  position: relative;
+  height: 120px;
+  width: auto;
   z-index: -1;
-  left: 1075px;
-  top: 879px;
+}
+#backgroundImages {
+  display: flex;
+  justify-content: space-around;
 }
 .drawnCard {
     border: 2px solid black;

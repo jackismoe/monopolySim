@@ -153,6 +153,12 @@ class GameBoard {
         player = Player.currentPlayers[i]
       }
     }
+    if (document.querySelector('.drawnCard')) {
+      document.querySelector('.drawnCard').remove()
+    }
+    if (document.querySelector('.showCard')) {
+      document.querySelector('.showCard').remove()
+    }
     player.move(total)
   }
   //add house

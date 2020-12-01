@@ -104,6 +104,20 @@ class Player {
     } else if (this.position == 8 || this.position == 23 || this.position == 37) {
       this.drawShark()
     }
+    if (GameBoard.currentPlayer < 4) {
+      GameBoard.currentPlayer ++ 
+    } else {
+      GameBoard.currentPlayer = 1
+    }
+    
+    document.querySelector(`div#player${GameBoard.currentPlayer}`).style.backgroundColor = 'rgb(181,222,183)'
+
+    if (GameBoard.currentPlayer > 1) {
+      document.querySelector(`div#player${GameBoard.currentPlayer - 1}`).style.backgroundColor = 'white'
+    } else {
+      document.querySelector(`div#player4`).style.backgroundColor = 'white'
+
+    }
   }
 
   drawVenture() {

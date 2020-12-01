@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   for (let x in GameSquare.squareData) {
     for (let y of GameSquare.squareData[x]) {
-      new GameSquare(y.id, y.name, y.buyable, y.price, y.owned, y.buildable, y.builtOn, y.funds, y.pricePerHouse, y.rent, y.oneHouse, y.twoHouse, y.threeHouse, y.fourHouse, y.hotel)
+      new GameSquare(y.id, y.name, y.buyable, y.price, y.owned, y.buildable, y.builtOn, y.funds, y.pricePerHouse, y.rent, y.oneHouse, y.twoHouse, y.threeHouse, y.fourHouse, y.hotel, y.desc)
     }
   }
 
