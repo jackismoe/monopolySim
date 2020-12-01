@@ -548,9 +548,7 @@ class GameSquare {
   }
 
   showSquare() {
-    console.log(this)
-
-    if ((this.buildable !== false && undefined)) {
+    if (this.buildable) {
       showCard.innerHTML = `
         <h2>${this.name} <a class='close' href="javascript:void(0)">ⓧ<a></h2>
         <h4>Price: $${this.price}</h4>
@@ -563,10 +561,16 @@ class GameSquare {
         <h4>Rent with fourHouse: $${this.fourHouse}</h4>
         <h4>Rent with hotel: $${this.hotel}</h4>
       `
-    } else if ((this.id == 5) || (this.id == 39)) {
+    } else if (this.name.includes('Tax')) {
       showCard.innerHTML = `
                             <h2>${this.name}</h2>
                             <h4>${this.desc}</h4>`
+    } else if ((this.name.includes('electricCompany')) || (this.name.includes('waterWorks'))) {
+      showCard.innerHTML = `
+                            <h2>${this.name}</h2>
+                            <h4>Price: $${this.price}</h4>
+                            <h4>Owned: ${this.owned}</h4>
+                            <h4>${this.rent}</h4>`
     } else {
       showCard.innerHTML = `
         <h2>${this.name} <a class='close' href="javascript:void(0)">ⓧ<a></h2>
@@ -575,10 +579,5 @@ class GameSquare {
         <h4>Rent: $${this.rent}</h4>`
     }
     gameBoard.appendChild(showCard)
-
-  const closeShowCard = document.querySelector('.close')
-  closeShowCard.addEventListener('click', () => {
-    showCard.remove()
-  })
   }
 }

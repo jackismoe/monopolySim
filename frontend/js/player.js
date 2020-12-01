@@ -2,7 +2,6 @@ let playerIcon1 = document.createElement('div')
 let playerIcon2 = document.createElement('div')
 let playerIcon3 = document.createElement('div')
 let playerIcon4 = document.createElement('div')
-let playerContainer = document.createElement('div')
 let keyIcon = document.createElement('img')
 keyIcon.className = 'keyIcon'
 keyIcon.src = `./images/pieces/key.png`
@@ -13,10 +12,11 @@ class Player {
     this.id = id
     this.name = name
     this.cash = cash
-    this.propertiesOwned = {}
+    this.propertiesOwned = []
     this.position = 1
     this.inJail = false
     this.hasJailCard = false
+    this.hasCollectedGo = true
     Player.currentPlayers.push(this)
   }
 
@@ -51,6 +51,7 @@ class Player {
   }
 
   static buildPlayerCards() {
+    let playerContainer = document.createElement('div')
     playerContainer.className = 'playerInfoContainer'
     playerContainer.id = 'playerInfoContainer'
     
@@ -60,23 +61,17 @@ class Player {
       player.className = 'player'
       player.id = `player${number}`
       number+=1
-
-      if (x.propertiesOwned.length == undefined) {
-        player.innerHTML = `
-        <h3>${x.name}</h3>
-        <p>$${x.cash}</p>`
-      } else {
-        player.innerHTML = `
-        <h3>${x.name}</h3>
-        <p>$${x.cash}</p>
-        <p>${x.propertiesOwned.length}</p>`
-      }
+      player.innerHTML = `
+                        <h3>${x.name}</h3>
+                        <p>$${x.cash}</p>`
       playerContainer.appendChild(player)
-      let iconImg = document.createElement('img')
-      let go = document.getElementsByName('1')[0]
-      iconImg.id = `playerIcon${x.id}`
-      iconImg.src = `./images/pieces/p${x.id}.png`
-      go.appendChild(iconImg)
+      if (!document.querySelector(`#playerIcon${x.id}`)) {
+        let iconImg = document.createElement('img')
+        let go = document.getElementsByName('1')[0]
+        iconImg.id = `playerIcon${x.id}`
+        iconImg.src = `./images/pieces/p${x.id}.png`
+        go.appendChild(iconImg)
+      }
     }
     game.appendChild(playerContainer)
   }
@@ -87,10 +82,15 @@ class Player {
     let timesToMove = Array(spaces)
     for (let x of timesToMove) {
       this.position++
+      this.turns++
+
       if (this.position > 40) {
         this.position = 1
+        this.hasCollectedGo = false
       }
+
       let square = document.getElementsByName(this.position)[0]    
+
       if ((this.position > 11 && this.position <= 20) || (this.position > 31 && this.position <= 40)) {
         myIcon.style.top = '35px'
       } else {
@@ -99,11 +99,34 @@ class Player {
       myIcon.remove()
       square.appendChild(myIcon)
     }
-    if (this.position == 3 || this.position == 18 || this.position == 34) {
+    setTimeout(() => {
+      this.handleMove()      
+    }, 150);
+  }
+  
+  handleMove() {
+    let space = GameSquare.gameSquares.find(space => this.position == space.id)
+
+    console.log(space)
+    if (space.name.includes('ventureFund')) {
       this.drawVenture()
-    } else if (this.position == 8 || this.position == 23 || this.position == 37) {
+    } else if (space.name.includes('sharkTank')) {
       this.drawShark()
+    } else if ((space.name == 'Go' || this.position >= 1) && (this.hasCollectedGo == false)) {
+      alert("Congratulations! You recived $200!")
+      this.hasCollectedGo = true
+      this.cash += 200
+      this.updateCard()
+    } else if ((space.buyable == true) && (space.owned == false)) {
+      let buy = confirm(`${space.name} is available for $${space.price}. Would you like to buy it?`)
+      if (buy) {
+        this.cash -= space.price
+        this.propertiesOwned.push(space)
+        space.owned = true
+        this.updateCard()
+      }
     }
+
     if (GameBoard.currentPlayer < 4) {
       GameBoard.currentPlayer ++ 
     } else {
@@ -116,7 +139,20 @@ class Player {
       document.querySelector(`div#player${GameBoard.currentPlayer - 1}`).style.backgroundColor = 'white'
     } else {
       document.querySelector(`div#player4`).style.backgroundColor = 'white'
+    }
+  }
 
+  updateCard() {
+    let card = document.querySelector(`#player${this.id}`)
+    if (this.propertiesOwned.length == undefined) {
+      card.innerHTML = `
+        <h3>${this.name}</h3>
+        <p>$${this.cash}</p>`
+    } else {
+      card.innerHTML = `
+        <h3>${this.name}</h3>
+        <p>$${this.cash}</p>
+        <button class='view'>viewProperties</button>`
     }
   }
 
