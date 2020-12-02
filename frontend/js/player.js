@@ -17,6 +17,7 @@ class Player {
     this.inJail = false
     this.hasJailCard = false
     this.hasCollectedGo = true
+    this.inJailTurns = 0
     Player.currentPlayers.push(this)
   }
 
@@ -76,13 +77,11 @@ class Player {
     game.appendChild(playerContainer)
   }
 
-
   move(spaces) {
     let myIcon = document.querySelector(`img#playerIcon${this.id}`)
     let timesToMove = Array(spaces)
     for (let x of timesToMove) {
       this.position++
-      this.turns++
 
       if (this.position > 40) {
         this.position = 1
@@ -106,23 +105,31 @@ class Player {
   
   handleMove() {
     let space = GameSquare.gameSquares.find(space => this.position == space.id)
-
-    console.log(space)
+    // draw cards
     if (space.name.includes('ventureFund')) {
       this.drawVenture()
     } else if (space.name.includes('sharkTank')) {
       this.drawShark()
     } else if ((space.name == 'Go' || this.position >= 1) && (this.hasCollectedGo == false)) {
+      // get money from go
       alert("Congratulations! You recived $200!")
       this.hasCollectedGo = true
       this.cash += 200
       this.updateCard()
     } else if ((space.buyable == true) && (space.owned == false)) {
+      // all property spaces
       let buy = confirm(`${space.name} is available for $${space.price}. Would you like to buy it?`)
       if (buy) {
         this.cash -= space.price
         this.propertiesOwned.push(space)
-        space.owned = true
+        space.owned = this.id
+
+        let square = document.querySelector(`#${space.name}`)
+        let ownedDiv = document.createElement('div')
+        ownedDiv.className = 'ownedDiv'
+        ownedDiv.innerHTML = `<img src='./images/pieces/owned${this.id}.png'/>`
+        square.appendChild(ownedDiv)
+
         this.updateCard()
       }
     }
@@ -143,17 +150,10 @@ class Player {
   }
 
   updateCard() {
-    let card = document.querySelector(`#player${this.id}`)
-    if (this.propertiesOwned.length == undefined) {
-      card.innerHTML = `
-        <h3>${this.name}</h3>
-        <p>$${this.cash}</p>`
-    } else {
-      card.innerHTML = `
-        <h3>${this.name}</h3>
-        <p>$${this.cash}</p>
-        <button class='view'>viewProperties</button>`
-    }
+    let card = document.querySelector(`#player${this.id}`)  
+    card.innerHTML = `
+      <h3>${this.name}</h3>
+      <p>$${this.cash}</p>`
   }
 
   drawVenture() {
@@ -169,6 +169,8 @@ class Player {
       keyIcon.src = `./images/pieces/key.png`
       currentContainer.appendChild(keyIcon)
     }
+
+    this.handleVentureDraw(number)
   }
 
   drawShark() {
@@ -187,6 +189,166 @@ class Player {
       keyIcon.src = `./images/pieces/key.png`
       currentContainer.appendChild(keyIcon)
     }
+    this.handleSharkDraw(number)
+  }
+
+  handleVentureDraw(id) {
+    let otherThree = Player.currentPlayers.filter(player => player.id != this.id)
+    let freeParking = GameSquare.gameSquares.find(square => square.name.includes('freeParking'))
+
+    if (id == 1) {
+      this.position = 1
+    } else if (id == 2) {
+      this.cash += 200
+    } else if (id == 3) {
+      this.cash -= 50
+      freeParking.funds += 50
+    } else if (id == 4) {
+      this.cash += 50
+    } else if (id == 5) {
+      this.hasJailCard = true
+    } else if (id == 6) {
+      this.position = 11
+      this.inJailTurns = 5
+    } else if (id == 7) {
+      this.cash += 150
+      for (let x of otherThree) {
+        x.cash -= 50
+        x.updateCard()
+      }
+    } else if (id == 8) {
+      this.cash += 100
+    } else if (id == 9) {
+      this.cash += 20
+    } else if (id == 10) {
+      this.cash += 30
+      for (let x of otherThree) {
+        x.cash -= 10
+        x.updateCard()
+      }
+    } else if (id == 11) {
+      this.cash += 100
+    } else if (id == 12) {
+      this.cash -= 50
+      freeParking.funds += 50
+    } else if (id == 13) {
+      this.cash -= 50
+      freeParking.funds += 50
+    } else if (id == 14) {
+      this.cash += 25
+    } else if (id == 15) {
+      this.cash += 10
+    } else if (id == 16) {
+      this.cash += 100
+    }
+    this.updateCard()
+  }
+
+  handleSharkDraw(id) {
+    let otherThree = Player.currentPlayers.filter(player => player.id != this.id)
+    let freeParking = GameSquare.gameSquares.find(square => square.name.includes('freeParking'))
+
+    if (id == 1) {
+      this.position = 1
+    } else if (id == 2) {
+      this.position = 25
+    } else if (id == 3) {
+      this.position = 12
+    } else if (id == 4) {
+      let utility
+      if (this.position < 13) {
+        utility = GameSquare.gameSquares.find(square => square.name.includes('electricCompany'))
+        this.position = 13
+      } else {
+        utility = GameSquare.gameSquares.find(square => square.name.includes('waterWorks'))
+        this.position = 29
+      }
+      if (!!utility.owned) {
+        utility.findOwner()
+        owner.cash += (utility.rent * 2)
+        this.cash -= (utility.rent * 2)
+      }
+    } else if (id == 5) {
+      let railroad
+      if (this.position < 6) {
+        railroad = GameSquare.gameSquares.find(square => square.name.includes('readingRailroad'))
+        this.position = 6
+      } else if (this.position < 16) {
+        railroad = GameSquare.gameSquares.find(square => square.name.includes('pennRailroad'))
+        this.position = 16
+      } else if (this.position < 26) {
+        railroad = GameSquare.gameSquares.find(square => square.name.includes('boRailroad'))
+        this.position = 26
+      } else if (this.position < 36) {
+        railroad = GameSquare.gameSquares.find(square => square.name.includes('shortLineRailroad'))
+        this.position = 36
+      }
+      if (!!railroad.owned) {
+        railroad.findOwner()
+        owner.cash += (railroad.rent * 2)
+        this.cash -= (railroad.rent * 2)
+      }
+    } else if (id == 6) {
+      this.cash += 50
+    } else if (id == 7) {
+      this.hasJailCard = true
+    } else if (id == 8) {
+      if (this.position == 1) {
+        this.position = 38
+      } else if (this.position == 2) {
+        this.position = 39
+      } else if (this.position == 3) {
+        this.position = 40
+      } else {
+        this.position -= 3
+      }
+    } else if (id == 9) {
+      this.position = 11
+      this.inJailTurns = 5
+    } else if (id == 10) {
+      let numberHouses = 0
+      let numberHotels = 0
+      for (let x of Player.currentPlayers) {
+        for (let y of x.propertiesOwned) {
+          if (y.builtOn) {
+            numberHouses = y.builtOn.houses
+            numberHotels = y.builtOn.hotels
+          }
+        }
+      }
+      this.cash -= (numberHouses * 25 + numberHotels * 100)
+      freeParking.funds += (numberHouses * 25 + numberHotels * 100)
+    } else if (id == 11) {
+      this.cash -= 15
+      freeParking.funds += 15
+    } else if (id == 12) {
+      let reading = GameSquare.gameSquares.find(square => square.name.includes('readingRailroad'))
+      this.position = 6
+      if (reading.owned) {
+        reading.findOwner()
+        owner.cash += reading.rent
+        this.cash -= reading.rent
+      }
+    } else if (id == 13) {
+      let boardWalk = GameSquare.gameSquares.find(square => square.name.includes('boardWalk'))
+      this.position = 40
+      if (boardWalk.owned) {
+        boardWalk.findOwner()
+        owner.cash += boardWalk.rent
+        this.cash -= boardWalk.rent
+      }
+    } else if (id == 14) {
+      this.cash -= 150
+      for (let x of otherThree) {
+        x.cash += 50
+        x.updateCard()
+      }
+    } else if (id == 15) {
+      this.cash += 150
+    } else if (id == 16) {
+      this.cash += 100
+    }
+    this.updateCard()
   }
 }
 

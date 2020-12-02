@@ -83,7 +83,7 @@ class GameBoard {
     },
     {
       id: 4,
-      desc: 'Advance token to nearest utility. If owned, roll dice again and pay owner 10 times amount shown.'
+      desc: 'Advance token to nearest utility. If owned, pay owner twice rent.'
     },
     {
       id: 5,
@@ -158,6 +158,9 @@ class GameBoard {
     }
     if (document.querySelector('.showCard')) {
       document.querySelector('.showCard').remove()
+    }
+    if (document.querySelector('.properties')) {
+      document.querySelector('.properties').remove()
     }
     player.move(total)
   }

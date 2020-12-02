@@ -19,18 +19,40 @@ body {
 }
 
 .space > div  {
-  border: 2px solid black;
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  top: 44px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#freeParking > div, #kentuckyAve > div, #indianaAve > div, #illinoisAve > div, #boRailRoad > div, #atlanticAve > div, #ventnorAve > div, #waterWorks > div, #marvinGardens > div, #goToJail > div, #inJail > div, #connecticutAve > div, #vermontAve > div, #orientalAve > div,#readingRailroad > div, #incomeTax > div, #balticAve > div, #mediterraneanAve > div, #go > div, #ventureFund1 > div, #sharkTank1 > div, #sharkTank2 > div {
-  position: absolute;
-  top: 79%
+.ownedDiv > img {
+  position: relative;
+  height: 75px;
+  z-index: +20;
 }
 
+.bottomRow > .space > .ownedDiv > img {
+  top: -67px
+}
+.topRow > .space > .ownedDiv > img {
+  top: 83px;
+  transform: rotate(180deg);
+}
+
+#newYorkAve > .ownedDiv > img, #tennesseeAve > .ownedDiv > img, #stJamesPlace > .ownedDiv > img, #pennRailroad > .ownedDiv > img, #virginiaAve > .ownedDiv > img, #statesAve > .ownedDiv > img, #electricCompany > .ownedDiv > img, #stCharlesPlace > .ownedDiv > img {
+  left: 74px;
+  top: -10px;
+  transform: rotate(90deg);
+}
+#pacificAve > .ownedDiv > img, #northCarolinaAve > .ownedDiv > img, #pennAve > .ownedDiv > img, #shortLineRailroad > .ownedDiv > img, #parkPlace > .ownedDiv > img, #boardWalk > .ownedDiv > img, #luxuryTax > .ownedDiv > img {
+  left: -73px;
+  top: -10px;
+  transform: rotate(270deg);
+}
+
+.bottomRow > .ownedDiv {
+  position: relative;
+}
 .setup > h2 {
   padding: 50px;
 }
@@ -374,8 +396,8 @@ a.close {
   display: flex;
   justify-content: center;
 }
-.drawnCard {
-    border: 2px solid black;
+.drawnCard, .properties {
+  border: 2px solid black;
   background-color: white;
   width: 315px;
   height: 370px;

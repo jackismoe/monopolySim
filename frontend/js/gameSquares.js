@@ -1,4 +1,5 @@
 class GameSquare {
+
   static squareData = [
     [
       {
@@ -579,5 +580,15 @@ class GameSquare {
         <h4>Rent: $${this.rent}</h4>`
     }
     gameBoard.appendChild(showCard)
+  }
+
+  findOwner() {
+    for (let x of Player.currentPlayers) {
+      for (let y of x.propertiesOwned) {
+        if (y.id == this.id) {
+          owner = x
+        }
+      }
+    }
   }
 }

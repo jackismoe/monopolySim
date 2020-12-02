@@ -8,7 +8,10 @@ const setup = document.querySelector('.setup')
 const showCard = document.createElement('div')
 const drawnCard = document.createElement('div')
 const body = document.querySelector('body')
+let properties = document.createElement('div')
+let owner
 
+properties.className = 'properties'
 showCard.className = 'showCard'
 drawnCard.className = 'drawnCard'
 
