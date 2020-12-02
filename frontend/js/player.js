@@ -116,6 +116,7 @@ class Player {
       this.hasCollectedGo = true
       this.cash += 200
       this.updateCard()
+      this.handleMove()
     } else if ((space.buyable == true) && (space.owned == false)) {
       // all property spaces
       let buy = confirm(`${space.name} is available for $${space.price}. Would you like to buy it?`)
@@ -131,7 +132,14 @@ class Player {
         square.appendChild(ownedDiv)
 
         this.updateCard()
-      }
+      }  
+    } else if (space.owned) {
+        space.findOwner()
+        alert(`${owner.name} owns this space. You owe them $${space.rent}.`)
+        this.cash -= space.rent
+        owner.cash += space.rent
+        owner.updateCard()
+        this.updateCard()
     }
 
     if (GameBoard.currentPlayer < 4) {
