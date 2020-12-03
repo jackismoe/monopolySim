@@ -4,7 +4,7 @@ let playerIcon3 = document.createElement('div')
 let playerIcon4 = document.createElement('div')
 let keyIcon = document.createElement('img')
 keyIcon.className = 'keyIcon'
-keyIcon.src = `./images/pieces/key.png`
+keyIcon.src = `./frontend/images/pieces/key.png`
 
 class Player {
   static currentPlayers = []
@@ -70,7 +70,7 @@ class Player {
         let iconImg = document.createElement('img')
         let go = document.getElementsByName('1')[0]
         iconImg.id = `playerIcon${x.id}`
-        iconImg.src = `./images/pieces/p${x.id}.png`
+        iconImg.src = `./frontend/images/pieces/p${x.id}.png`
         go.appendChild(iconImg)
       }
     }
@@ -128,7 +128,7 @@ class Player {
         let square = document.querySelector(`#${space.name}`)
         let ownedDiv = document.createElement('div')
         ownedDiv.className = 'ownedDiv'
-        ownedDiv.innerHTML = `<img src='./images/pieces/owned${this.id}.png'/>`
+        ownedDiv.innerHTML = `<img src='./frontend/images/pieces/owned${this.id}.png'/>`
         square.appendChild(ownedDiv)
 
         this.updateCard()
