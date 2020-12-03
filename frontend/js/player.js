@@ -7,6 +7,8 @@ keyIcon.className = 'keyIcon'
 keyIcon.src = `./frontend/images/pieces/key.png`
 
 class Player {
+
+  static currentPlayers = []
   constructor(id, name, cash) {
     this.id = id
     this.name = name
