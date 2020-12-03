@@ -27,29 +27,22 @@ body {
 
 .ownedDiv > img {
   position: relative;
-  height: 75px;
+  height: 40px;
   z-index: +20;
 }
 
 .bottomRow > .space > .ownedDiv > img {
-  top: -67px
+  top: -22px;
+  left: 40px;
 }
 .topRow > .space > .ownedDiv > img {
-  top: 83px;
-  transform: rotate(180deg);
-}
-
-#newYorkAve > .ownedDiv > img, #tennesseeAve > .ownedDiv > img, #stJamesPlace > .ownedDiv > img, #pennRailroad > .ownedDiv > img, #virginiaAve > .ownedDiv > img, #statesAve > .ownedDiv > img, #electricCompany > .ownedDiv > img, #stCharlesPlace > .ownedDiv > img {
-  left: 74px;
   top: -10px;
-  transform: rotate(90deg);
+  left: 40px;
 }
-#pacificAve > .ownedDiv > img, #northCarolinaAve > .ownedDiv > img, #pennAve > .ownedDiv > img, #shortLineRailroad > .ownedDiv > img, #parkPlace > .ownedDiv > img, #boardWalk > .ownedDiv > img, #luxuryTax > .ownedDiv > img {
-  left: -73px;
-  top: -10px;
-  transform: rotate(270deg);
+.middleNine > .space > .ownedDiv > img {
+  left: 47px;
+  top: -24px;
 }
-
 .bottomRow > .ownedDiv {
   position: relative;
 }
