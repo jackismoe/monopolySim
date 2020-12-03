@@ -7,7 +7,6 @@ keyIcon.className = 'keyIcon'
 keyIcon.src = `./frontend/images/pieces/key.png`
 
 class Player {
-  static currentPlayers = []
   constructor(id, name, cash) {
     this.id = id
     this.name = name
@@ -18,6 +17,7 @@ class Player {
     this.hasJailCard = false
     this.hasCollectedGo = true
     this.inJailTurns = 0
+    this.currentPlayers = []
     Player.currentPlayers.push(this)
   }
 
