@@ -1,0 +1,2 @@
+class VentureFundCardsController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class SharkTankCard < ApplicationRecord
+end

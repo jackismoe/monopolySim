@@ -1,0 +1,2 @@
+class GameSquaresController < ApplicationController
+end

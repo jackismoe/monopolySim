@@ -1,0 +1,2 @@
+class SharkTankCardsController < ApplicationController
+end
