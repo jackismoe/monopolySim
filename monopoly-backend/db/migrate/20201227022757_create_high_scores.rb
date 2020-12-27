@@ -9,8 +9,6 @@ class CreateHighScores < ActiveRecord::Migration[6.0]
       t.integer :totalCash
       t.integer :cashSpent
       t.integer :leftOverCash
-
-      add_reference :players, index: true, foreign_key: true
     end
   end
 end
