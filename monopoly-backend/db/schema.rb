@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_202401) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
-    t.string "password"
+    t.string "password_digest"
     t.integer "gamesPlayed"
   end
 
