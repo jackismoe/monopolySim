@@ -1,17 +1,36 @@
 import React from 'react'
-import Setup from './components/Setup'
+import {connect} from 'react-redux'
+import Setup from './components/Setup.jsx'
+import {fetchGameSquares} from './actions/fetchGameSquares'
 
-export default class App extends React.Component {
+class App extends React.Component {
+
+  componentDidMount() {
+    console.log(this.props)
+    this.props.fetchGameSquares()
+  }
+
   render() {
+    console.log(this.props.squares)
     return(
       <>
         <Setup/>
-        {/* {// hidden until setup is completed} */}
-        {/* <Game/> */}
-
-        {/* <NavBar/>
-        <GameBoard/> */}
       </>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    squares: state.squares,
+    loading: state.loading
+  }
+}
+
+const mapDipatchToProps = dispatch => {
+  return {
+    fetchGameSquares: () => dispatch(fetchGameSquares())
+  }
+}
+
+export default connect(mapStateToProps, mapDipatchToProps)(App)

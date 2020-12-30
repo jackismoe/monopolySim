@@ -54,7 +54,12 @@ class Setup extends React.Component {
 
   handleOnSubmit = event => {
     event.preventDefault()
+    // player 1 will be you
+    // other players will be 'ghosts'
+    // only player 1 will be prompted to login
   }
+
+
 
   render() {
     return(
