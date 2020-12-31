@@ -3,4 +3,8 @@ class PlayersController < ApplicationController
     allPlayers = Player.all
     render json: allPlayers
   end
+
+  def create
+    byebug
+  end
 end
