@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Setup from './components/Setup.jsx'
 import {fetchGameSquares} from './actions/fetchGameSquares'
+import GameBoard from './components/stateless/GameBoard'
 
-class App extends React.Component {
+class Game extends React.Component {
 
   componentDidMount() {
     console.log(this.props)
@@ -11,10 +11,9 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.props.squares)
     return(
       <>
-        <Setup/>
+        <GameBoard gameSquares={this.props.squares}/>
       </>
     )
   }
@@ -29,8 +28,8 @@ const mapStateToProps = state => {
 
 const mapDipatchToProps = dispatch => {
   return {
-    fetchGameSquares: () => dispatch(fetchGameSquares())
+    fetchGameSquares: () => dispatch(fetchGameSquares()),
   }
 }
 
-export default connect(mapStateToProps, mapDipatchToProps)(App)
+export default connect(mapStateToProps, mapDipatchToProps)(Game)

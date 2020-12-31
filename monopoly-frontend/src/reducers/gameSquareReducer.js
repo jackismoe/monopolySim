@@ -1,4 +1,4 @@
-const gameReducer = (state = {squares: [], loading: false}, action) => {
+const gameReducer = (state = {squares: [], players: [], loading: false}, action) => {
   switch (action.type) {
     case "ADD_GAMESQUARES":
       return {

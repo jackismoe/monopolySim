@@ -1,75 +1,35 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {fetchPostPlayer} from '../actions/fetchPostPlayer'
 
 class Setup extends React.Component {
-  
+
   constructor() {
     super()
     this.state = {
-      player1: '',
-      player2: '',
-      player3: '',
-      player4: '',
-      startingCash: 0
+      player: [],
+      cash: 0
     }
-  }
-
-  handleNameInputChange = event => {
-    switch (event.target.id) {
-      case 'player1':
-        this.setState({
-          ...this.state,
-          player1: event.target.value
-        })
-      break
-      case 'player2':
-        this.setState({
-          ...this.state,
-          player2: event.target.value
-        })
-      break
-      case 'player3':
-        this.setState({
-          ...this.state,
-          player3: event.target.value
-        })
-      break
-      case 'player4':
-        this.setState({
-          ...this.state,
-          player4: event.target.value
-        })
-      break
-      default:
-        return this.state
-    }
-  }
-
-  chooseStartingCash = event => {
-    this.setState({
-      ...this.state,
-      startingCash: parseInt(event.target.value)
-    })
-    console.log(this.state)
   }
 
   handleOnSubmit = event => {
     event.preventDefault()
-    // player 1 will be you
-    // other players will be 'ghosts'
-    // only player 1 will be prompted to login
+    this.setState({
+      player: [event.target[0].value, event.target[1].value, event.target[2].value, event.target[3].value],
+      cash: parseInt(event.target[4].value)
+    })
+    this.props.fetchPostPlayer(this.props.state)
   }
-
-
 
   render() {
     return(
       <>
         <form className='setupForm' onSubmit={this.handleOnSubmit}>
           <label>Please Enter Player Names</label><br/>
-            <input onChange={this.handleNameInputChange} id='player1' placeholder='jec' type='text'/><br/>
-            <input onChange={this.handleNameInputChange} id='player2' placeholder='ren' type='text'/><br/>
-            <input onChange={this.handleNameInputChange} id='player3' placeholder='ruby' type='text'/><br/>
-            <input onChange={this.handleNameInputChange} id='player4' placeholder='blue' type='text'/><br/>
+            <input onChange={this.handleOnChange} id='player1' placeholder='jec' type='text'/><br/>
+            <input onChange={this.handleOnChange} id='player2' placeholder='ren' type='text'/><br/>
+            <input onChange={this.handleOnChange} id='player3' placeholder='ruby' type='text'/><br/>
+            <input onChange={this.handleOnChange} id='player4' placeholder='blue' type='text'/><br/>
           <label>Please Choose Your Starting Cash</label><br/>
             <select onChange={this.chooseStartingCash}>
               <option>1500</option>
@@ -84,4 +44,18 @@ class Setup extends React.Component {
   }
 }
 
-export default Setup
+const mapStateToProps = state => {
+  return {
+    player: state.player,
+    cash: state.startingCash
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchPostPlayer: (state) => dispatch(fetchPostPlayer(state))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Setup)
+// export default Setup
