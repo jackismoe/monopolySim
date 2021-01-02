@@ -7,7 +7,6 @@ export const fetchGameSquares = () => {
     .then(response => response.json())
     .then(jsonResponse => {
       dispatch({type: 'ADD_GAMESQUARES', squares: jsonResponse})
-      console.log(jsonResponse)
     })
   }
 }

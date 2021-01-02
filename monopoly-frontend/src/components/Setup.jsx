@@ -1,11 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchPostGame} from '../actions/fetchPostGame'
+import {fetchGameSquares} from '../actions/fetchGameSquares'
 
 class Setup extends React.Component {
 
   handleOnSubmit = event => {
     event.preventDefault()
+    this.props.fetchGameSquares()
     let settings = {
       player: [event.target[0].value, event.target[1].value, event.target[2].value, event.target[3].value],
       cash: parseInt(event.target[4].value)
@@ -47,6 +49,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchPostGame: (state) => dispatch(fetchPostGame(state)),
+    fetchGameSquares: () => dispatch(fetchGameSquares())
   }
 }
 

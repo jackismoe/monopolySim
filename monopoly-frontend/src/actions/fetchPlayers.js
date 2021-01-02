@@ -7,7 +7,6 @@ export const fetchPlayers = () => {
     .then(response => response.json())
     .then(jsonResponse => {
       dispatch({type: 'ADD_PLAYERS', players: jsonResponse})
-      console.log(jsonResponse)
     })
   }
 }

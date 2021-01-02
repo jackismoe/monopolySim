@@ -3,7 +3,7 @@ const gameReducer = (state = {squares: [], players: [], loading: false}, action)
     case "LOAD_GAMESQUARES":
       return {
         ...state,
-        squares: [...state.squares],
+        squares: [],
         loading: true
       }
     case "ADD_GAMESQUARES":
@@ -15,10 +15,20 @@ const gameReducer = (state = {squares: [], players: [], loading: false}, action)
     case 'LOAD_GAME':
       return {
         ...state,
-        players: [...state.players]
+        players: []
       }
     case 'CREATE_GAME':
       return {
+      }
+    case 'LOAD_PLAYERS':
+      return {
+        ...state,
+        players: [...state.players]
+      }
+    case 'ADD_PLAYERS':
+      return {
+        ...state,
+        players: [action.players.playerOne, action.players.playerTwo, action.players.playerThree, action.players.playerFour]
       }
     default:
       return state
