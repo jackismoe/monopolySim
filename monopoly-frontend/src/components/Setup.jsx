@@ -1,24 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchPostPlayer} from '../actions/fetchPostPlayer'
+import {fetchPostGame} from '../actions/fetchPostGame'
 
 class Setup extends React.Component {
 
-  constructor() {
-    super()
-    this.state = {
-      player: [],
-      cash: 0
-    }
-  }
-
   handleOnSubmit = event => {
     event.preventDefault()
-    this.setState({
+    let settings = {
       player: [event.target[0].value, event.target[1].value, event.target[2].value, event.target[3].value],
       cash: parseInt(event.target[4].value)
-    })
-    this.props.fetchPostPlayer(this.props.state)
+    }
+    this.props.fetchPostGame(settings)
+    this.props.history.push('/play')
   }
 
   render() {
@@ -47,13 +40,13 @@ class Setup extends React.Component {
 const mapStateToProps = state => {
   return {
     player: state.player,
-    cash: state.startingCash
+    cash: state.cash
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPostPlayer: (state) => dispatch(fetchPostPlayer(state))
+    fetchPostGame: (state) => dispatch(fetchPostGame(state)),
   }
 }
 

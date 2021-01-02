@@ -10,10 +10,10 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
-import rootReducer from './reducers/rootReducer'
+import gameReducer from './reducers/gameReducer'
 
 const BASE_URL = 'http://localhost:3001'
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(gameReducer, applyMiddleware(thunk))
 
 export default BASE_URL
 

@@ -1,9 +1,9 @@
 import BASE_URL from '../index'
 
-export const fetchPostPlayer = (settings) => {
+export const fetchPostGame = (settings) => {
   return (dispatch) => {
-    dispatch({type: 'LOAD_PLAYER'})
-    fetch(`${BASE_URL}/players`, {
+    dispatch({type: 'LOAD_GAME'})
+    fetch(`${BASE_URL}/games`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -14,8 +14,7 @@ export const fetchPostPlayer = (settings) => {
     })
     .then(response => response.json())
     .then(jsonResponse => {
-      dispatch({type: 'ADD_PLAYER', player: jsonResponse})
-      console.log(jsonResponse)
+      dispatch({type: 'CREATE_GAME', game: jsonResponse})
     })
   }
 }
