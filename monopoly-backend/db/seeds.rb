@@ -79,8 +79,4 @@ GameSquare.create(spaceNumber: 1, name: "Go",)
   SharkTankCard.create(desc: "Your building loan matures. Receive $150.")
   SharkTankCard.create(desc: "You have won a crossword competition. Collect $100.")
 
-  me = Player.create(name:'jackismoe', password: '1111', gamesPlayed: 0)
-
-  me.highScores.create(name: me.name, gamesPlayed: me.gamesPlayed, propertiesOwned: 343, opponents: 117, startingCash: 0, totalCash: 10, cashSpent: 31 , leftOverCash: 1996)
-
 puts 'created seeds successfully'

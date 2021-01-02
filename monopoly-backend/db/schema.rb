@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_27_202401) do
+ActiveRecord::Schema.define(version: 2021_01_02_164631) do
 
   create_table "game_squares", force: :cascade do |t|
     t.string "spaceNumber"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 2020_12_27_202401) do
     t.text "desc"
   end
 
+  create_table "games", force: :cascade do |t|
+    t.string "playerOne"
+    t.string "playerTwo"
+    t.string "playerThree"
+    t.string "playerFour"
+    t.integer "startingCash"
+    t.integer "winner"
+  end
+
   create_table "high_scores", force: :cascade do |t|
     t.string "name"
     t.integer "gamesPlayed"
@@ -46,8 +55,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_202401) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
-    t.string "password_digest"
-    t.integer "gamesPlayed"
+    t.integer "cash"
   end
 
   create_table "shark_tank_cards", force: :cascade do |t|

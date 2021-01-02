@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :games
   resources :players
   resources :high_scores
   resources :shark_tank_cards
