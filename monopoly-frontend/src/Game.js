@@ -16,7 +16,9 @@ class Game extends React.Component {
       <>
         {console.log(this.props.squares)}   
         {console.log(this.props.players)}
-        <GameSquare squares={this.props.squares}/>
+        <div className='gameBoard'>
+          <GameSquare squares={this.props.squares}/>
+        </div>
         <PlayerInfo players={this.props.players}/>
       </>
     )
