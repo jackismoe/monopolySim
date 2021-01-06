@@ -1,11 +1,20 @@
 import React from 'react'
 import {fetchGameSquares} from '../../actions/fetchGameSquares'
 import {connect} from 'react-redux'
+
 class GameSquare extends React.Component {
 
   render() {
     return(
-      <div>square</div>
+      <>
+        {this.props.squares.map((square, idx) => {
+          return (
+            <div key={idx}>
+              {square.name}
+            </div>
+          )
+        })}
+      </>
     )
   }
 }
@@ -16,3 +25,5 @@ const mapDipatchToProps = dispatch => {
     fetchGameSquares: () => dispatch(fetchGameSquares())
   }
 }
+
+export default GameSquare

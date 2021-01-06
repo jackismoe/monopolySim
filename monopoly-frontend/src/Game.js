@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import GameBoard from './components/stateless/GameBoard'
 import PlayerInfo from './components/stateful/PlayerInfo'
+import GameSquare from './components/stateful/GameSquare'
 import {fetchGameSquares} from './actions/fetchGameSquares'
 import {fetchPlayers} from './actions/fetchPlayers'
 
@@ -14,8 +14,10 @@ class Game extends React.Component {
   render() {
     return(
       <>
-        <GameBoard gameSquares={this.props.squares}/>
-        <PlayerInfo players={this.props.fetchPlayers}/>
+        {console.log(this.props.squares)}   
+        {console.log(this.props.players)}
+        <GameSquare squares={this.props.squares}/>
+        <PlayerInfo players={this.props.players}/>
       </>
     )
   }
