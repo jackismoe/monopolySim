@@ -8,7 +8,7 @@ export default class PlayerInfo extends React.Component {
           return(
             <div key={idx} className='player'>
               <h2>{player.name}</h2>
-              <h4>{player.cash}</h4>
+              <h4>${player.cash}</h4>
             </div>
           )
         })}
