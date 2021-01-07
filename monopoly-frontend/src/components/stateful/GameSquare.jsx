@@ -13,8 +13,9 @@ class GameSquare extends React.Component {
         <div className='topRow'>
         {topRow.map(square => {
           return (
-            <div id={square.spaceNumber} name={square.name} className='space'>
+            <div id={square.name} name={square.spaceNumber} className='space'>
               <p>{square.name}</p>
+              <div id='playerSlot' className='playerSlot'></div>
             </div>
           )
         })}
@@ -22,8 +23,9 @@ class GameSquare extends React.Component {
         <div className='middleNine'>
           {middleNine.map(square => {
             return (
-              <div id={square.spaceNumber} name={square.name} className='space'>
+              <div id={square.name} name={square.spaceNumber} className='space'>
                 <p>{square.name}</p>
+                <div id='playerSlot' className='playerSlot'></div>
               </div>
             )
           })}
@@ -31,8 +33,9 @@ class GameSquare extends React.Component {
         <div className='bottomRow'>
           {bottomRow.map(square => {
             return (
-              <div id={square.spaceNumber} name={square.name} className='space'>
+              <div id={square.name} name={square.spaceNumber} className='space'>
                 <p>{square.name}</p>
+                <div id='playerSlot' className='playerSlot'></div>
               </div>
             )
           })}

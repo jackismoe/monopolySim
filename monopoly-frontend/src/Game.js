@@ -2,13 +2,17 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PlayerInfo from './components/stateful/PlayerInfo'
 import GameSquare from './components/stateful/GameSquare'
+import Player from './components/stateful/Player'
 import {fetchGameSquares} from './actions/fetchGameSquares'
 import {fetchPlayers} from './actions/fetchPlayers'
 
 class Game extends React.Component {
   componentDidMount() {
-    this.props.fetchGameSquares()
-    this.props.fetchPlayers()
+    setTimeout(() => {
+      this.props.fetchGameSquares()
+      this.props.fetchPlayers()
+    }, 75);
+    
   }
 
   render() {
@@ -18,6 +22,7 @@ class Game extends React.Component {
         {console.log(this.props.players)}
         <div className='gameBoard'>
           <GameSquare squares={this.props.squares}/>
+          <Player players={this.props.players}/>
         </div>
         <PlayerInfo players={this.props.players}/>
       </>
