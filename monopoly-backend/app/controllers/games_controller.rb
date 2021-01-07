@@ -4,18 +4,22 @@ class GamesController < ApplicationController
     players = {
       :playerOne => {
         :name => Game.last.playerOne,
+        :currentPosition => 1,
         :cash => Game.last.startingCash
       },
       :playerTwo => {
         :name => Game.last.playerTwo,
+        :currentPosition => 1,
         :cash => Game.last.startingCash
       },
       :playerThree => {
         :name => Game.last.playerThree,
+        :currentPosition => 1,
         :cash => Game.last.startingCash
       },
       :playerFour => {
         :name => Game.last.playerFour,
+        :currentPosition => 1,
         :cash => Game.last.startingCash
       }
     }

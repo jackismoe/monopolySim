@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_01_02_164631) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
+    t.integer "currentPosition"
     t.integer "cash"
   end
 
