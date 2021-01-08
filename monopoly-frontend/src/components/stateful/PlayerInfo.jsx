@@ -6,7 +6,7 @@ export default class PlayerInfo extends React.Component {
       <div className='playerInfoContainer'>
         {this.props.players.map((player, idx) => {
           return(
-            <div key={idx} className='player'>
+            <div key={idx} className={`player${idx+1}`}>
               <h2>{player.name}</h2>
               <h4>${player.cash}</h4>
             </div>

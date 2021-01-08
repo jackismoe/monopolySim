@@ -3,6 +3,7 @@
   justify-content: space-between;
   background-color: gray;
   padding: 20px;
+  margin-bottom: 10px;
 }
 body {
   display: flex;
@@ -20,7 +21,7 @@ body {
 }
 .space > p {
   position: relative;
-  top: -20%;
+  top: -15%;
   width: 100%
 }
 .playerInfoContainer {
@@ -32,15 +33,7 @@ body {
   position: relative;
   top: -59px
 }
-.player {
-  width: 25%;
-  height: 100%;
-  border: 2px solid black;
-  border-radius: 25px;
-  margin: 5px;
-  text-align: center;
-  background-color: white;
-}
+
 .topRow, .bottomRow {
   display: grid;
   grid-template-rows: 120px;  
@@ -157,7 +150,8 @@ div > p {
   background-position: center;
 }
 #playerIcon1 {
-  background-color: white;
+  background-color: rgb(204,38,62);
+  background-image: url('./images/pieces/p1.png');
   height: 20px;
   width: 20px;
   margin: 2px;
@@ -169,11 +163,12 @@ div > p {
   border-radius: 50%;
   position: relative;
   border: 2px solid black;
-  position: absolute;
+  position: relative;
   top: -25;
 }
 #playerIcon2 {
-  background-color: white;
+  background-color: rgb(173,111,186);
+  background-image: url('./images/pieces/p2.png');
   height: 20px;
   width: 20px;
   margin: 2px;
@@ -185,11 +180,12 @@ div > p {
   border-radius: 50%;
   position: relative;
   border: 2px solid black;
-  position: absolute;
+  position: relative;
   top: -25;
 }
 #playerIcon3 {
-  background-color: white;
+  background-color: rgb(64,174,161);
+  background-image: url('./images/pieces/p3.png');
   height: 20px;
   width: 20px;
   margin: 2px;
@@ -201,12 +197,13 @@ div > p {
   border-radius: 50%;
   position: relative;
   border: 2px solid black;
-  position: absolute;
+  position: relative;
   justify-self: baseline;
   top: -25;
 }
 #playerIcon4 {
-  background-color: white;
+  background-color: rgb(236,138,139);
+  background-image: url('./images/pieces/p4.png');
   height:20px;
   width: 20px;
   margin: 2px;
@@ -218,14 +215,80 @@ div > p {
   border-radius: 50%;
   position: relative;
   border: 2px solid black;
-  position: absolute;
+  position: relative;
   top: -25;
 }
+.player1 {
+  width: 25%;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 25px;
+  margin: 5px;
+  text-align: center;
+  background-color: rgb(204,38,62);
+}
+.player2 {
+  width: 25%;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 25px;
+  margin: 5px;
+  text-align: center;
+  background-color: rgb(173,111,186);
+}
+.player3 {
+  width: 25%;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 25px;
+  margin: 5px;
+  text-align: center;
+  background-color: rgb(64,174,161);
+}
+.player4 {
+  width: 25%;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 25px;
+  margin: 5px;
+  text-align: center;
+  background-color: rgb(236,138,139);
+}
 .playerSlot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  height: 15%;
-  position: relative;
+  height: 25%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(4, 1fr);
+}
+.dice {
+  position: absolute;
+  top: 66%;
+  left: 48.6%;
+}
+.firstNumber {
+  position: absolute;
+  background-color: white;
+  width: 38px;
+  height: 68px;
+  top: -370%;
+  left: -103%;
+  font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui;
+}
+.secondNumber {
+  position: absolute;
+  background-color: white;
+  width: 38px;
+  height: 68px;
+  top: -370%;
+  left: 103%;
+  font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui;
 }
