@@ -3,23 +3,31 @@ class GamesController < ApplicationController
   def index
     players = {
       :playerOne => {
+        :id => 1,
         :name => Game.last.playerOne,
         :currentPosition => 1,
+        :isTurn => true,
         :cash => Game.last.startingCash
       },
       :playerTwo => {
+        :id => 2,
         :name => Game.last.playerTwo,
         :currentPosition => 1,
+        :isTurn => false,
         :cash => Game.last.startingCash
       },
       :playerThree => {
+        :id => 3,
         :name => Game.last.playerThree,
         :currentPosition => 1,
+        :isTurn => false,
         :cash => Game.last.startingCash
       },
       :playerFour => {
+        :id => 4,
         :name => Game.last.playerFour,
         :currentPosition => 1,
+        :isTurn => false,
         :cash => Game.last.startingCash
       }
     }
