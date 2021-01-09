@@ -4,6 +4,9 @@
   background-color: gray;
   padding: 20px;
   margin-bottom: 10px;
+  width: 114%;
+  left: -9%;
+  position: relative;
 }
 body {
   display: flex;
@@ -21,7 +24,7 @@ body {
 }
 .space > p {
   position: relative;
-  top: -15%;
+  top: -10%;
   width: 100%
 }
 .playerInfoContainer {
@@ -291,4 +294,28 @@ div > p {
   align-items: center;
   justify-content: center;
   font-family: system-ui;
+}
+.sharkCards {
+  position: absolute;
+  background-color: rgb(239,109,28);
+  top: 28%;
+  left: 59%;
+  transform: rotate(45deg);
+  height: 100px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ventureCards {
+  position: absolute;
+  background-color: rgb(90,195,241);
+  top: 28%;
+  left: 28%;
+  transform: rotate(-45deg);
+  height: 100px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -4,6 +4,8 @@ import PlayerInfo from './components/stateful/PlayerInfo'
 import GameSquare from './components/stateful/GameSquare'
 import Player from './components/stateful/Player'
 import Dice from './components/stateless/Dice'
+import VentureCards from './components/stateless/VentureCards'
+import SharkCards from './components/stateless/SharkCards'
 import {fetchGameSquares} from './actions/fetchGameSquares'
 import {fetchPlayers} from './actions/fetchPlayers'
 
@@ -13,17 +15,16 @@ class Game extends React.Component {
       this.props.fetchGameSquares()
       this.props.fetchPlayers()
     }, 75);
-    
   }
-
+  
   render() {
     return(
       <>
-        {console.log(this.props.squares)}   
-        {console.log(this.props.players)}
         <div className='gameBoard'>
           <GameSquare squares={this.props.squares}/>
-          <Dice/>
+          <Dice players={this.props.players}/>
+          <VentureCards/>
+          <SharkCards/>
           <Player players={this.props.players}/>
         </div>
         <PlayerInfo players={this.props.players}/>
