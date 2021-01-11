@@ -14,7 +14,7 @@ class Game extends React.Component {
     setTimeout(() => {
       this.props.fetchGameSquares()
       this.props.fetchPlayers()
-    }, 75);
+    }, 0);
   }
   
   render() {

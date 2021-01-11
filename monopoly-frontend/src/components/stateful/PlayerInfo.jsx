@@ -4,7 +4,7 @@ export default class PlayerInfo extends React.Component {
   render() {
     return(
       <div className='playerInfoContainer'>
-        {this.props.players.map((player, idx) => {
+        {this.props.players && this.props.players.map((player, idx) => {
           return(
             <div key={idx} className={`player${idx+1}`}>
               <h2>{player.name}</h2>
@@ -15,4 +15,8 @@ export default class PlayerInfo extends React.Component {
       </div>
     )
   }
+}
+
+PlayerInfo.defaultProps = {
+  players: []
 }

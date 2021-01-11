@@ -45,4 +45,8 @@ class GameSquare extends React.Component {
   }
 }
 
+GameSquare.defaultProps = {
+  squares: []
+}
+
 export default GameSquare

@@ -30,6 +30,8 @@ const gameReducer = (state = {squares: [], players: [], loading: false}, action)
         ...state,
         players: [action.players.playerOne, action.players.playerTwo, action.players.playerThree, action.players.playerFour]
       }
+    case 'UPDATE_PLAYER':
+
     default:
       return state
   }
