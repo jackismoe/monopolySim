@@ -3,9 +3,9 @@ class CreateGameSquares < ActiveRecord::Migration[6.0]
     create_table :game_squares do |t|
       t.string :spaceNumber
       t.string :name
-      t.integer :buyable
+      t.boolean :buyable
       t.integer :price
-      t.boolean :owned
+      t.integer :owned
       t.boolean :buildable
       t.boolean :builtOn
       t.integer :funds
@@ -16,6 +16,8 @@ class CreateGameSquares < ActiveRecord::Migration[6.0]
       t.integer :threeHouse
       t.integer :fourHouse
       t.integer :hotel
+      t.integer :houses
+      t.integer :hotels
       t.text :desc
     end
   end

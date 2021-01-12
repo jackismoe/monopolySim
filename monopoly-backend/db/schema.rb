@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 2021_01_02_164631) do
   create_table "game_squares", force: :cascade do |t|
     t.string "spaceNumber"
     t.string "name"
-    t.integer "buyable"
+    t.boolean "buyable"
     t.integer "price"
-    t.boolean "owned"
+    t.integer "owned"
     t.boolean "buildable"
     t.boolean "builtOn"
     t.integer "funds"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2021_01_02_164631) do
     t.integer "threeHouse"
     t.integer "fourHouse"
     t.integer "hotel"
+    t.integer "houses"
+    t.integer "hotels"
     t.text "desc"
   end
 

@@ -27,7 +27,6 @@ const gameReducer = (state = {squares: [], players: [], loading: false}, action)
         players: [...state.players]
       }
     case 'ADD_PLAYERS':
-      debugger
       return {
         ...state,
         players: [action.game.players.playerOne, action.game.players.playerTwo, action.game.players.playerThree, action.game.players.playerFour],

@@ -43,21 +43,20 @@ class GamesController < ApplicationController
   end 
 
   def update
-    playerOneState = params[:currentGame][:players][0]
-    playerTwoState = params[:currentGame][:players][1]
-    playerThreeState = params[:currentGame][:players][2]
-    playerFourState = params[:currentGame][:players][3]
-
-    playerOneData = Player.find_by(name: playerOneState[:name])
-    playerTwoData = Player.find_by(name: playerTwoState[:name])
-    playerThreeData = Player.find_by(name: playerThreeState[:name])
-    playerFourData = Player.find_by(name: playerFourState[:name])
-
-    playerOneData.update(currentPosition: playerOneState[:currentPosition], isTurn: playerOneState[:isTurn], cash: playerOneState)
-    playerTwoData.update(currentPosition: playerTwoState[:currentPosition], isTurn: playerTwoState[:isTurn], cash: playerTwoState)
-    playerThreeData.update(currentPosition: playerThreeState[:currentPosition], isTurn: playerThreeState[:isTurn], cash: playerThreeState)
-    playerFourData.update(currentPosition: playerFourState[:currentPosition], isTurn: playerFourState[:isTurn], cash: playerFourState)
-
-    byebug
+    # players
+    allPlayersState = params[:currentGame][:players]
+    allPlayersState.each do |playerState|
+      playerData = Player.find_by(name: playerState[:name])
+      playerData.update(currentPosition: playerState[:currentPosition], isTurn: playerState[:isTurn], cash: playerState[:cash])
+      playerData.save
+    end
+    
+    # squares
+    allSquaresState = params[:currentGame][:squares]
+    allSquaresState.each do |squareState|
+      squareData = GameSquare.find_by(name: squareState[:name])
+      squareData.update(owned: squareState[:owned], builtOn: squareState[:builtOn], funds: squareState[:funds], houses: squareData[:houses], hotels: squareData[:hotels])
+      squareData.save
+    end   
   end
 end
