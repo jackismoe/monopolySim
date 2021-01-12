@@ -1,35 +1,33 @@
 import React from 'react'
-export default class Player extends React.Component { 
-  static currentPlayer = 1
+import {v4 as uuid} from "uuid"
 
-  componentDidMount() {
-    setTimeout(() => {
-      for (let i = 1; i <= 4; i++) {
-        this.appendToGo(i)
-      }
-    }, 250);
-  }
+export default class Player extends React.Component { 
   
   static movePlayerPiece = (rollTotal, allPlayers) => {
-    let player = allPlayers.filter(player => player.id == Player.currentPlayer)[0]
-    player.currentPosition += rollTotal
-
-    if (player.currentPosition > 40) {
-      let spacesFromGo = player.currentPosition - 40
-      player.currentPosition = 0
-      player.currentPosition += spacesFromGo
+    // eslint-disable-next-line
+    let currentPlayer = allPlayers.filter(player => player.isTurn == true)[0]
+    currentPlayer.currentPosition += rollTotal
+    
+    if (currentPlayer.currentPosition > 40) {
+      let spacesFromGo = currentPlayer.currentPosition - 40
+      currentPlayer.currentPosition = 0
+      currentPlayer.currentPosition += spacesFromGo
     }
-
-    let playerIcon = document.querySelector(`#playerIcon${player.id}`) 
-    let squareToMoveTo = document.getElementsByName(`${player.currentPosition}`)[0]
-
+    
+    let playerIcon = document.querySelector(`#playerIcon${currentPlayer.id}`) 
+    let squareToMoveTo = document.getElementsByName(`${currentPlayer.currentPosition}`)[0]
+    
     squareToMoveTo.appendChild(playerIcon)
 
-    if (Player.currentPlayer < 4) {
-      Player.currentPlayer++
+    let nextPlayer
+    if (currentPlayer.id !== 4) {
+      nextPlayer = allPlayers.find(player => player.id == (currentPlayer.id + 1))
     } else {
-      Player.currentPlayer = 1
+      nextPlayer = allPlayers.find(player => player.id == 1)
     }
+
+    currentPlayer.isTurn = false
+    nextPlayer.isTurn = true
   }
   
   appendToGo = (playerId) => {
@@ -44,7 +42,7 @@ export default class Player extends React.Component {
         {this.props.players && this.props.players.map((player, idx) => {
           return (
             <>
-              <div id={`playerIcon${idx+1}`} key={idx}></div>
+              <div id={`playerIcon${idx+1}`} key={uuid()}></div>
             </>
           )
         })}

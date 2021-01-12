@@ -8,13 +8,22 @@ import VentureCards from './components/stateless/VentureCards'
 import SharkCards from './components/stateless/SharkCards'
 import {fetchGameSquares} from './actions/fetchGameSquares'
 import {fetchPlayers} from './actions/fetchPlayers'
+import {saveGame} from './actions/saveGame'
+import {BASE_URL} from './index'
 
 class Game extends React.Component {
   componentDidMount() {
-    setTimeout(() => {
-      this.props.fetchGameSquares()
-      this.props.fetchPlayers()
-    }, 0);
+    this.props.fetchGameSquares()
+    this.props.fetchPlayers()
+  }
+
+  saveGame = () => {
+    let currentGame = {
+      gameId: this.props.gameId,
+      players: this.props.players, 
+      squares: this.props.squares,
+    }
+    this.props.saveGame(currentGame)
   }
   
   render() {
@@ -28,6 +37,7 @@ class Game extends React.Component {
           <Player players={this.props.players}/>
         </div>
         <PlayerInfo players={this.props.players}/>
+        <button className='saveButton' onClick={this.saveGame}>Save Game</button>
       </>
     )
   }
@@ -35,17 +45,25 @@ class Game extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    gameId: state.gameId,
     squares: state.squares,
     players: state.players,
-    loading: state.loading
+    loading: state.loading,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchGameSquares: () => dispatch(fetchGameSquares()),
-    fetchPlayers: () => dispatch(fetchPlayers())
+    fetchPlayers: () => dispatch(fetchPlayers()),
+    saveGame: (currentGame) => dispatch(saveGame(currentGame))
   }
+}
+
+Game.defaultProps = {
+  squares: [],
+  players: [],
+  loading: false
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game)

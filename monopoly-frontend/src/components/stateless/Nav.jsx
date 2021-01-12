@@ -1,13 +1,14 @@
 import React from 'react'
+import Game from '../../Game'
 
-function NavBar() {
-  return (
-    <div className='navWrapper'>
-      <div>this will be menu</div>
-      <div>this will be scores</div>
-      <div>this will be player</div>
-    </div>
-  )
+export default class NavBar extends React.Component {
+  render() {  
+    return (
+      <div className='navWrapper'>
+        <div>this will be menu</div>
+        <div>this will be scores</div>
+      </div>
+    )
+  }
 }
 
-export default NavBar

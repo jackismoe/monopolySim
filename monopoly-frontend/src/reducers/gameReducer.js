@@ -15,10 +15,11 @@ const gameReducer = (state = {squares: [], players: [], loading: false}, action)
     case 'LOAD_GAME':
       return {
         ...state,
-        players: []
       }
     case 'CREATE_GAME':
       return {
+        ...state,
+        gameId: action.game.id
       }
     case 'LOAD_PLAYERS':
       return {
@@ -26,12 +27,15 @@ const gameReducer = (state = {squares: [], players: [], loading: false}, action)
         players: [...state.players]
       }
     case 'ADD_PLAYERS':
+      debugger
       return {
         ...state,
-        players: [action.players.playerOne, action.players.playerTwo, action.players.playerThree, action.players.playerFour]
+        players: [action.game.players.playerOne, action.game.players.playerTwo, action.game.players.playerThree, action.game.players.playerFour],
+        gameId: action.game.gameId
       }
-    case 'UPDATE_PLAYER':
+    case 'SAVING_GAME':
 
+    // eslint-disable-next-line
     default:
       return state
   }

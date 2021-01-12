@@ -6,7 +6,7 @@ export const fetchPlayers = () => {
     fetch(`${BASE_URL}/games`)
     .then(response => response.json())
     .then(jsonResponse => {
-      dispatch({type: 'ADD_PLAYERS', players: jsonResponse})
+      dispatch({type: 'ADD_PLAYERS', game: jsonResponse})
     })
   }
 }
