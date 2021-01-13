@@ -64,10 +64,12 @@ ActiveRecord::Schema.define(version: 2021_01_02_164631) do
 
   create_table "shark_tank_cards", force: :cascade do |t|
     t.text "desc"
+    t.boolean "drawn"
   end
 
   create_table "venture_fund_cards", force: :cascade do |t|
     t.text "desc"
+    t.boolean "drawn"
   end
 
   add_foreign_key "high_scores", "players"

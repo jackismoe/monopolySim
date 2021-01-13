@@ -44,6 +44,7 @@ class GamesController < ApplicationController
 
   def update
     # players
+    byebug
     allPlayersState = params[:currentGame][:players]
     allPlayersState.each do |playerState|
       playerData = Player.find_by(name: playerState[:name])
