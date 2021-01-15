@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import {v4 as uuid} from "uuid"
 
 export default class Player extends React.Component { 
@@ -15,8 +16,8 @@ export default class Player extends React.Component {
       this.appendToGo(x)
     }
   }
-  componentDidMount() {
-    setTimeout(this.appendForLoop, 200)
+  componentDidUpdate() {
+    // setTimeout(this.appendForLoop, 300)
   }
 
   roll = () => {
@@ -36,6 +37,7 @@ export default class Player extends React.Component {
   movePlayerPiece = (rollTotal, allPlayers) => {
     // eslint-disable-next-line
     let currentPlayer = allPlayers.filter(player => player.isTurn == true)[0]
+
     const actuallyMoveThePiece = () => {
       currentPlayer.currentPosition += rollTotal
       
@@ -44,17 +46,17 @@ export default class Player extends React.Component {
         currentPlayer.currentPosition = 0
         currentPlayer.currentPosition += spacesFromGo
       }
-      
-      let playerIcon = document.querySelector(`#playerIcon${currentPlayer.id}`) 
+
+      let playerIcon = document.querySelector(`#playerIcon${currentPlayer.playerId}`) 
       let squareToMoveTo = document.getElementsByName(`${currentPlayer.currentPosition}`)[0]
       
       squareToMoveTo.appendChild(playerIcon)
 
       let nextPlayer
-      if (currentPlayer.id !== 4) {
-        nextPlayer = allPlayers.find(player => player.id == (currentPlayer.id + 1))
+      if (currentPlayer.playerId !== 4) {
+        nextPlayer = allPlayers.find(player => player.playerId == (currentPlayer.playerId + 1))
       } else {
-        nextPlayer = allPlayers.find(player => player.id == 1)
+        nextPlayer = allPlayers.find(player => player.playerId == 1)
       }
       
       this.handleMove(currentPlayer, currentPlayer.currentPosition)
@@ -72,13 +74,13 @@ export default class Player extends React.Component {
 
 
   handleMove = (currentPlayer, currentSpace) => {
-    debugger
     if (((currentSpace == 3)||(currentSpace == 18)||(currentSpace == 34))) {
       this.draw(this.props.ventureCards, currentPlayer)
     } else if ((currentSpace == 8)||(currentSpace == 23)||(currentSpace == 37)) {
       this.draw(this.props.sharkCards, currentPlayer)
     }
     // for all other spaces
+    this.props.saveGame()
   }
 
   draw(deck, currentPlayer) { 
@@ -108,7 +110,7 @@ export default class Player extends React.Component {
     const handleCard = (card, currentPlayer) => {
       console.log(card)
       console.log(currentPlayer)
-      const playerIcon = document.getElementById(`playerIcon${currentPlayer.id}`)
+      const playerIcon = document.getElementById(`playerIcon${currentPlayer.playerId}`)
 
     // venture
     if (card.id == 1) {

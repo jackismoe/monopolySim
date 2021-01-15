@@ -56,9 +56,12 @@ ActiveRecord::Schema.define(version: 2021_01_02_164631) do
   end
 
   create_table "players", force: :cascade do |t|
+    t.string "gameId"
+    t.integer "playerId"
     t.string "name"
     t.integer "currentPosition"
     t.boolean "isTurn"
+    t.integer "turnsToSkip"
     t.boolean "vfJailCard"
     t.boolean "stJailCard"
     t.integer "cash"

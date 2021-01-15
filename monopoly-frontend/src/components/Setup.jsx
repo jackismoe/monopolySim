@@ -13,7 +13,9 @@ class Setup extends React.Component {
       cash: parseInt(event.target[4].value)
     }
     this.props.fetchPostGame(settings)
-    this.props.history.push('/play')
+    setTimeout(() => {
+      this.props.history.push('/play')  
+    }, 1000);
   }
 
   render() {

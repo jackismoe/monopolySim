@@ -39,7 +39,7 @@ class Game extends React.Component {
           <Dice players={this.props.players}/>
           <VentureCards/>
           <SharkCards/>
-          <Player players={this.props.players} ventureCards={this.props.ventureCards} sharkCards={this.props.sharkCards}/>
+          <Player players={this.props.players} ventureCards={this.props.ventureCards} sharkCards={this.props.sharkCards} saveGame={() => this.saveGame()}/>
         </div>
         <PlayerInfo players={this.props.players}/>
         <button className='saveButton' onClick={this.saveGame}>Save Game</button>
