@@ -59,16 +59,20 @@ ActiveRecord::Schema.define(version: 2021_01_02_164631) do
     t.string "name"
     t.integer "currentPosition"
     t.boolean "isTurn"
+    t.boolean "vfJailCard"
+    t.boolean "stJailCard"
     t.integer "cash"
   end
 
   create_table "shark_tank_cards", force: :cascade do |t|
     t.text "desc"
+    t.string "deck"
     t.boolean "drawn"
   end
 
   create_table "venture_fund_cards", force: :cascade do |t|
     t.text "desc"
+    t.string "deck"
     t.boolean "drawn"
   end
 

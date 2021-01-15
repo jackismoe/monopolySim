@@ -7,6 +7,9 @@ class GamesController < ApplicationController
           :id => 1,
           :name => Game.last.playerOne,
           :currentPosition => 1,
+          :vfJailCard => false,
+          :stJailCard => false,
+          :turnsToSkip => 0,
           :isTurn => true,
           :cash => Game.last.startingCash
         },
@@ -14,6 +17,9 @@ class GamesController < ApplicationController
           :id => 2,
           :name => Game.last.playerTwo,
           :currentPosition => 1,
+          :vfJailCard => false,
+          :stJailCard => false,
+          :turnsToSkip => 0,
           :isTurn => false,
           :cash => Game.last.startingCash
         },
@@ -21,6 +27,9 @@ class GamesController < ApplicationController
           :id => 3,
           :name => Game.last.playerThree,
           :currentPosition => 1,
+          :vfJailCard => false,
+          :stJailCard => false,
+          :turnsToSkip => 0,
           :isTurn => false,
           :cash => Game.last.startingCash
         },
@@ -28,6 +37,9 @@ class GamesController < ApplicationController
           :id => 4,
           :name => Game.last.playerFour,
           :currentPosition => 1,
+          :vfJailCard => false,
+          :stJailCard => false,
+          :turnsToSkip => 0,
           :isTurn => false,
           :cash => Game.last.startingCash
         }
