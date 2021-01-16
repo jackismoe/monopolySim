@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import PlayerInfo from './components/stateful/PlayerInfo'
 import GameSquare from './components/stateful/GameSquare'
 import Player from './components/stateful/Player'
-import Dice from './components/stateless/Dice'
 import VentureCards from './components/stateless/VentureCards'
 import SharkCards from './components/stateless/SharkCards'
 import {fetchGameSquares} from './actions/fetchGameSquares'
@@ -33,17 +32,17 @@ class Game extends React.Component {
   
   render() {
     return(
-      <>
+      <div>
         <div className='gameBoard'>
           <GameSquare squares={this.props.squares}/>
-          <Dice players={this.props.players}/>
+          {/* <Dice players={this.props.players}/> */}
           <VentureCards/>
           <SharkCards/>
           <Player players={this.props.players} ventureCards={this.props.ventureCards} sharkCards={this.props.sharkCards} saveGame={() => this.saveGame()}/>
         </div>
         <PlayerInfo players={this.props.players}/>
         <button className='saveButton' onClick={this.saveGame}>Save Game</button>
-      </>
+      </div>
     )
   }
 }

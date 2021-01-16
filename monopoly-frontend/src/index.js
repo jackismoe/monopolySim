@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Game from './Game';
 import Setup from './components/Setup';
-import HighScores from './components/stateless/HighScores';
+import LoadGame from './components/LoadGame'
 import Nav from './components/stateless/Nav'
 import './index.css';
 
@@ -23,7 +23,7 @@ ReactDOM.render(
     <Router>
       <Route exact path='/' component={Setup}/>
       <Route exact path='/play' component={Game}/>
-      <Route exact path='/highscores' component={HighScores}/>
+      <Route exact path='/load' component={LoadGame}/>
     </Router>
   </Provider>,
   document.getElementById('root')

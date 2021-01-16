@@ -2,7 +2,6 @@ import BASE_URL from '../index'
 
 export const saveGame = (currentGame) => {
   return (dispatch) => {
-    dispatch({type: 'SAVING_GAME'})
     fetch(`${BASE_URL}/games/${currentGame.gameId}`, {
       method: 'PATCH',
       headers: {
@@ -14,7 +13,7 @@ export const saveGame = (currentGame) => {
     })
     .then(response => response.json())
     .then(jsonResponse => {
-      
+      dispatch({type: 'SAVE_GAME', game: jsonResponse})
     })
   }
 }

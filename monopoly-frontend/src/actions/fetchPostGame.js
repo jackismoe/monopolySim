@@ -2,7 +2,6 @@ import BASE_URL from '../index'
 
 export const fetchPostGame = (settings) => {
   return (dispatch) => {
-    dispatch({type: 'LOAD_GAME'})
     fetch(`${BASE_URL}/games`, {
       method: 'POST',
       headers: {

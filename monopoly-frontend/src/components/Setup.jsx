@@ -18,6 +18,10 @@ class Setup extends React.Component {
     }, 1000);
   }
 
+  chooseGame = event => {
+    this.props.history.push('/load')
+  }
+
   render() {
     return(
       <>
@@ -36,6 +40,8 @@ class Setup extends React.Component {
             </select><br/>
           <input type='submit'/>
         </form>
+        <br/>
+        <button onClick={this.chooseGame}>Load Previous Game</button>
       </>
     )
   }

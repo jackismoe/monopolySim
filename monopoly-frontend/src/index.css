@@ -338,3 +338,7 @@ div > p {
   width: 75%;
   top: 100%;
 }
+
+.load {
+  color: white;
+}

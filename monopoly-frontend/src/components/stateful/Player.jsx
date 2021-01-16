@@ -4,20 +4,21 @@ import {v4 as uuid} from "uuid"
 
 export default class Player extends React.Component { 
 
-  appendToGo = (playerId) => {
-    for (let x = 1; x <= 4; x ++) {
-      let goPlayerSlot = document.getElementsByName('1')[0].children[1]
-      let gamePiece = document.querySelector(`#playerIcon${playerId}`)
-      goPlayerSlot.appendChild(gamePiece)
-    }
-  }
-  appendForLoop = () => {
-    for (let x = 1; x <= 4; x ++) {
-      this.appendToGo(x)
-    }
-  }
-  componentDidUpdate() {
-    // setTimeout(this.appendForLoop, 300)
+  // appendToGo = (playerId) => {
+  //   for (let x = 1; x <= 4; x ++) {
+  //     let goPlayerSlot = document.getElementsByName('1')[0].children[1]
+  //     let gamePiece = document.querySelector(`#playerIcon${playerId}`)
+  //     goPlayerSlot.appendChild(gamePiece)
+  //   }
+  // }
+  // appendForLoop = () => {
+  //   for (let x = 1; x <= 4; x ++) {
+  //     this.appendToGo(x)
+  //   }
+  // }
+
+  placeIcons = () => {
+    
   }
 
   roll = () => {
@@ -36,7 +37,8 @@ export default class Player extends React.Component {
 
   movePlayerPiece = (rollTotal, allPlayers) => {
     // eslint-disable-next-line
-    let currentPlayer = allPlayers.filter(player => player.isTurn == true)[0]
+
+    let currentPlayer = allPlayers.filter(player => (player.isTurn == true) && (player.gameId == allPlayers[0].gameId)  )[0]
 
     const actuallyMoveThePiece = () => {
       currentPlayer.currentPosition += rollTotal
@@ -242,12 +244,12 @@ export default class Player extends React.Component {
     
   render() {
     return (
-      <>
+      <div>
         {this.props.players && this.props.players.map((player, idx) => {
           return (
-            <>
+            <div>
               <div id={`playerIcon${idx+1}`} key={uuid()}></div>
-            </>
+            </div>
           )
         })}
         <div id='dice' className='dice'>
@@ -255,7 +257,7 @@ export default class Player extends React.Component {
           <div className='secondNumber'></div>
           <button onClick={this.roll}>Roll</button>
         </div>
-      </>
+      </div>
     )
   }
 }

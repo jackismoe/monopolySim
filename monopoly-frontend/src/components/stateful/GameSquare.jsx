@@ -14,7 +14,7 @@ class GameSquare extends React.Component {
     const bottomRow = this.props.squares.filter(square => square.spaceNumber < 12)
 
     return(
-      <>
+      <div>
         <div className='topRow'>
         {topRow.map(square => {
           return (
@@ -45,7 +45,7 @@ class GameSquare extends React.Component {
             )
           })}
         </div>
-      </>
+      </div>
     )
   }
 }

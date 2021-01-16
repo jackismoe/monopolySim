@@ -47,7 +47,22 @@ class GamesController < ApplicationController
       squareData = GameSquare.find_by(name: squareState[:name])
       squareData.update(owned: squareState[:owned], builtOn: squareState[:builtOn], funds: squareState[:funds], houses: squareData[:houses], hotels: squareData[:hotels])
       squareData.save
-    end   
-    render json: Game.last
+    end
+
+    playerOne = Player.find_by(gameId: Game.last.id, name: Game.last.playerOne)
+    playerTwo = Player.find_by(gameId: Game.last.id, name: Game.last.playerTwo)
+    playerThree = Player.find_by(gameId: Game.last.id, name: Game.last.playerThree)
+    playerFour = Player.find_by(gameId: Game.last.id, name: Game.last.playerFour)
+    
+    game = {
+      :playerOne => playerOne,
+      :playerTwo => playerTwo,
+      :playerThree => playerThree,
+      :playerFour => playerFour,
+      :squares => GameSquare.all,
+      :gameId => Game.last.id
+    }
+
+    render json: game
   end
 end
