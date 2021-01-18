@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Game from './Game';
-import Setup from './components/Setup';
-import LoadGame from './components/LoadGame'
-import Nav from './components/stateless/Nav'
+import Game from './components/stateful/Game';
+import Setup from './components/stateful/Setup';
+import LoadGame from './components/stateful/LoadGame'
 import './index.css';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom'
@@ -19,7 +18,6 @@ export default BASE_URL
 
 ReactDOM.render(
   <Provider store={store}>
-    <Nav/>
     <Router>
       <Route exact path='/' component={Setup}/>
       <Route exact path='/play' component={Game}/>

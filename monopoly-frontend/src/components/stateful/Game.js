@@ -1,16 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import PlayerInfo from './components/stateful/PlayerInfo'
-import GameSquare from './components/stateful/GameSquare'
-import Player from './components/stateful/Player'
-import VentureCards from './components/stateless/VentureCards'
-import SharkCards from './components/stateless/SharkCards'
-import {fetchGameSquares} from './actions/fetchGameSquares'
-import {fetchPlayers} from './actions/fetchPlayers'
-import {fetchVenture} from './actions/fetchVenture'
-import {fetchShark} from './actions/fetchShark'
-import {saveGame} from './actions/saveGame'
-import {BASE_URL} from './index'
+import PlayerInfo from '../stateless/PlayerInfo'
+import GameSquare from '../stateless/GameSquare'
+import Player from '../stateless/Player'
+import VentureCards from '../stateless/VentureCards'
+import SharkCards from '../stateless/SharkCards'
+import {fetchGameSquares} from '../../actions/fetchGameSquares'
+import {fetchPlayers} from '../../actions/fetchPlayers'
+import {fetchVenture} from '../../actions/fetchVenture'
+import {fetchShark} from '../../actions/fetchShark'
+import {saveGame} from '../../actions/saveGame'
+
 
 class Game extends React.Component {
   componentDidMount() {
@@ -18,7 +18,7 @@ class Game extends React.Component {
     this.props.fetchPlayers()
     this.props.fetchVenture()
     this.props.fetchShark()
-
+    this.props.fetchAllGames()
   }
   
   saveGame = () => {
@@ -54,7 +54,7 @@ const mapStateToProps = state => {
     players: state.players,
     ventureCards: state.ventureCards,
     sharkCards: state.sharkCards,
-    loading: state.loading,
+    loading: state.loading
   }
 }
 

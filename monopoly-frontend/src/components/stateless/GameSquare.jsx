@@ -1,11 +1,7 @@
 import React from 'react'
-import {v4 as uuid} from "uuid"; import {connect} from 'react-redux'
+import {v4 as uuid} from "uuid"; 
 
 class GameSquare extends React.Component {
-
-  static saveGame() {
-    debugger
-  }
 
   render() {
     // eslint-disable-next-line

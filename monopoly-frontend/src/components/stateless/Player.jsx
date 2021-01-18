@@ -1,25 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import {v4 as uuid} from "uuid"
 
 export default class Player extends React.Component { 
-
-  // appendToGo = (playerId) => {
-  //   for (let x = 1; x <= 4; x ++) {
-  //     let goPlayerSlot = document.getElementsByName('1')[0].children[1]
-  //     let gamePiece = document.querySelector(`#playerIcon${playerId}`)
-  //     goPlayerSlot.appendChild(gamePiece)
-  //   }
-  // }
-  // appendForLoop = () => {
-  //   for (let x = 1; x <= 4; x ++) {
-  //     this.appendToGo(x)
-  //   }
-  // }
-
-  placeIcons = () => {
-    
-  }
 
   roll = () => {
     let firstDie = document.querySelector('.firstNumber')

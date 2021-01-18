@@ -1,4 +1,4 @@
-const gameReducer = (state = {squares: [], players: [], ventureCards: [], sharkCards: []}, action) => {
+const gameReducer = (state = {allGames: [], squares: [], players: [], ventureCards: [], sharkCards: []}, action) => {
   switch (action.type) {
     case "ADD_GAMESQUARES":
       return {
@@ -28,7 +28,12 @@ const gameReducer = (state = {squares: [], players: [], ventureCards: [], sharkC
         sharkCards: action.sharkCards
       }      
     case 'SAVE_GAME':
-      debugger
+    case 'LOAD_ALL':
+      return {
+        ...state,
+        allGames: action.games
+      }
+
     // eslint-disable-next-line
     default:
       return state

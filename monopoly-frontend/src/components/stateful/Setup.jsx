@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchPostGame} from '../actions/fetchPostGame'
-import {fetchGameSquares} from '../actions/fetchGameSquares'
+import {fetchPostGame} from '../../actions/fetchPostGame'
+import {fetchGameSquares} from '../../actions/fetchGameSquares'
+import {fetchAllGames} from '../../actions/fetchAllGames'
+import {Link} from 'react-router-dom'
 
 class Setup extends React.Component {
 
@@ -18,11 +20,9 @@ class Setup extends React.Component {
     }, 1000);
   }
 
-  chooseGame = event => {
-    this.props.history.push('/load')
-  }
-
   render() {
+    
+    debugger
     return(
       <>
         <form className='setupForm' onSubmit={this.handleOnSubmit}>
@@ -41,7 +41,12 @@ class Setup extends React.Component {
           <input type='submit'/>
         </form>
         <br/>
-        <button onClick={this.chooseGame}>Load Previous Game</button>
+        <Link to={{
+          pathname: '/load',
+          state: {
+            games: this.props.games
+          }
+        }}>Load Previous Game</Link>
       </>
     )
   }
@@ -50,16 +55,17 @@ class Setup extends React.Component {
 const mapStateToProps = state => {
   return {
     player: state.player,
-    cash: state.cash
+    cash: state.cash,
+    games: state.allGames
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchPostGame: (state) => dispatch(fetchPostGame(state)),
-    fetchGameSquares: () => dispatch(fetchGameSquares())
+    fetchGameSquares: () => dispatch(fetchGameSquares()),
+    fetchAllGames: () => dispatch(fetchAllGames())
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Setup)
-// export default Setup
