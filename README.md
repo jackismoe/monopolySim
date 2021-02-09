@@ -1,4 +1,1 @@
-A Monopoly Simulation
-  * branches available: 
-    * react
-    * vanilla js
+this is the vanilla branch
