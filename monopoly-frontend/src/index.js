@@ -27,7 +27,3 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  
-})
