@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  propertiesOwned: 1
+  opponents: 1
+  startingCash: 1
+  totalCash: 1
+  cashSpent: 1
+  leftOverCash: 1
+
+two:
+  propertiesOwned: 1
+  opponents: 1
+  startingCash: 1
+  totalCash: 1
+  cashSpent: 1
+  leftOverCash: 1

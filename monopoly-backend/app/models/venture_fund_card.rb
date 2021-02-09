@@ -1,0 +1,2 @@
+class VentureFundCard < ApplicationRecord
+end
